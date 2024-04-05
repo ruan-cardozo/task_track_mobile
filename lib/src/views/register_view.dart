@@ -7,7 +7,6 @@ class MyRegisterPage extends StatefulWidget {
   const MyRegisterPage({super.key, required this.title});
 
   @override
-  // ignore: library_private_types_in_public_api
   _MyRegisterPage createState() => _MyRegisterPage();
 }
 
@@ -126,18 +125,16 @@ class _MyRegisterPage extends State<MyRegisterPage> {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 0),
                         child: Row(
-                          // Alterado de Column para Row
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             GestureDetector(
-                              // Adiciona o GestureDetector
                               onTap: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => const MyLoginPage(
                                           title:
-                                              'Teste')), // Navega para RegisterScreen
+                                              'Teste')),
                                 );
                               },
                               child: const Text(
@@ -150,9 +147,8 @@ class _MyRegisterPage extends State<MyRegisterPage> {
                               ),
                             ),
                             const SizedBox(
-                                width: 190), // Adiciona um espaço de 20 pixels
+                                width: 190), 
                             ElevatedButton(
-                                // Botão movido aqui
                                 onPressed: () {},
                                 style: ElevatedButton.styleFrom(
                                   fixedSize: const Size(68, 68),

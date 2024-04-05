@@ -98,7 +98,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   ),
                   const Align(
                     alignment:
-                        Alignment.centerRight, // Alinha o widget à direita
+                        Alignment.centerRight,
                     child: Text(
                       'Esqueceu a senha?',
                       style: TextStyle(
@@ -111,13 +111,6 @@ class _MyLoginPageState extends State<MyLoginPage> {
                 ],
               ),
             ),
-            // Align(
-            //   alignment: Alignment.topRight,
-            //   child: ElevatedButton(
-            //     onPressed: () {},
-            //     child: const Text('MyButton'),
-            //   ),
-            // ),
             Expanded(
               flex: 1,
               child: Container(
@@ -129,17 +122,15 @@ class _MyLoginPageState extends State<MyLoginPage> {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 0),
                         child: Row(
-                          // Alterado de Column para Row
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             GestureDetector(
-                              // Adiciona o GestureDetector
                               onTap: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          MyRegisterPage(title: 'Teste')), // Navega para RegisterScreen
+                                          MyRegisterPage(title: 'Teste')),
                                 );
                               },
                               child: const Text(
@@ -152,9 +143,8 @@ class _MyLoginPageState extends State<MyLoginPage> {
                               ),
                             ),
                             SizedBox(
-                                width: 85), // Adiciona um espaço de 20 pixels
+                                width: 85),
                             ElevatedButton(
-                                // Botão movido aqui
                                 onPressed: () {},
                                 style: ElevatedButton.styleFrom(
                                   fixedSize: const Size(68, 68),
