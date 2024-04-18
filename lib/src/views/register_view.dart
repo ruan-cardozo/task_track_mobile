@@ -125,11 +125,9 @@ class _MyRegisterPage extends State<MyRegisterPage> {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 0),
                         child: Row(
-                          // Alterado de Column para Row
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             GestureDetector(
-                              // Adiciona o GestureDetector
                               onTap: () {
                                 Navigator.push(
                                   context,
