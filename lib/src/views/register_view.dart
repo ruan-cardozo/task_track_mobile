@@ -7,7 +7,6 @@ class MyRegisterPage extends StatefulWidget {
   const MyRegisterPage({super.key, required this.title});
 
   @override
-  // ignore: library_private_types_in_public_api
   _MyRegisterPage createState() => _MyRegisterPage();
 }
 
@@ -57,38 +56,38 @@ class _MyRegisterPage extends State<MyRegisterPage> {
                     controller: userController,
                     decoration: const InputDecoration(
                       hintText: "Digite seu nome",
-                      hintStyle: TextStyle(
-                          color: Color.fromRGBO(222, 203, 183, 100)),
+                      hintStyle:
+                          TextStyle(color: Color.fromRGBO(222, 203, 183, 100)),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
                             color: Color.fromRGBO(211, 210, 210, 100)),
                       ),
                       focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromRGBO(67, 54, 51, 100)),
+                        borderSide:
+                            BorderSide(color: Color.fromRGBO(67, 54, 51, 100)),
                       ),
                       labelText: 'Nome',
-                      labelStyle: TextStyle(
-                          color: Color.fromRGBO(222, 203, 183, 100)),
+                      labelStyle:
+                          TextStyle(color: Color.fromRGBO(222, 203, 183, 100)),
                     ),
                   ),
                   TextField(
                     controller: emailController,
                     decoration: const InputDecoration(
                       hintText: "Digite seu email",
-                      hintStyle: TextStyle(
-                          color: Color.fromRGBO(222, 203, 183, 100)),
+                      hintStyle:
+                          TextStyle(color: Color.fromRGBO(222, 203, 183, 100)),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
                             color: Color.fromRGBO(211, 210, 210, 100)),
                       ),
                       focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromRGBO(67, 54, 51, 100)),
+                        borderSide:
+                            BorderSide(color: Color.fromRGBO(67, 54, 51, 100)),
                       ),
                       labelText: 'Email',
-                      labelStyle: TextStyle(
-                          color: Color.fromRGBO(222, 203, 183, 100)),
+                      labelStyle:
+                          TextStyle(color: Color.fromRGBO(222, 203, 183, 100)),
                     ),
                   ),
                   const SizedBox(height: 16.0),
@@ -97,19 +96,19 @@ class _MyRegisterPage extends State<MyRegisterPage> {
                     obscureText: true,
                     decoration: const InputDecoration(
                       hintText: "Digite sua senha",
-                      hintStyle: TextStyle(
-                          color: Color.fromRGBO(222, 203, 183, 100)),
+                      hintStyle:
+                          TextStyle(color: Color.fromRGBO(222, 203, 183, 100)),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
                             color: Color.fromRGBO(211, 210, 210, 100)),
                       ),
                       focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromRGBO(67, 54, 51, 100)),
+                        borderSide:
+                            BorderSide(color: Color.fromRGBO(67, 54, 51, 100)),
                       ),
                       labelText: 'Senha',
-                      labelStyle: TextStyle(
-                          color: Color.fromRGBO(222, 203, 183, 100)),
+                      labelStyle:
+                          TextStyle(color: Color.fromRGBO(222, 203, 183, 100)),
                     ),
                   ),
                 ],
@@ -135,9 +134,8 @@ class _MyRegisterPage extends State<MyRegisterPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const MyLoginPage(
-                                          title:
-                                              'Teste')), // Navega para RegisterScreen
+                                      builder: (context) =>
+                                          const MyLoginPage(title: 'Teste')),
                                 );
                               },
                               child: const Text(
@@ -149,10 +147,8 @@ class _MyRegisterPage extends State<MyRegisterPage> {
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                                width: 190), // Adiciona um espaço de 20 pixels
+                            const SizedBox(width: 190),
                             ElevatedButton(
-                                // Botão movido aqui
                                 onPressed: () {},
                                 style: ElevatedButton.styleFrom(
                                   fixedSize: const Size(68, 68),

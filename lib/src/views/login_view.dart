@@ -138,8 +138,9 @@ class _MyLoginPageState extends State<MyLoginPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          MyRegisterPage(title: 'Teste')), // Navega para RegisterScreen
+                                      builder: (context) => MyRegisterPage(
+                                          title:
+                                              'Teste')), // Navega para RegisterScreen
                                 );
                               },
                               child: const Text(
