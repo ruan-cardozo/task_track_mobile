@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:task_track/src/services/user_service.dart';
 import 'package:task_track/src/views/login_view.dart';
 
 class MyRegisterPage extends StatefulWidget {
@@ -16,6 +18,33 @@ class _MyRegisterPage extends State<MyRegisterPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   FocusNode myFocusNode = FocusNode();
+  final userService = UserService(baseUrl: 'http://172.24.3.79:3000');
+
+  void registerUser() async {
+    var response = await userService.register(
+        userController.text, emailController.text, passwordController.text);
+
+    if (response.statusCode == 201) {
+      Fluttertoast.showToast(
+          msg: "Usuário registrado com sucesso.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 3,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    } else {
+      Fluttertoast.showToast(
+        msg: "Falha ao registrar usuário.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,18 +176,23 @@ class _MyRegisterPage extends State<MyRegisterPage> {
                             ),
                             const SizedBox(width: 190),
                             ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                  fixedSize: const Size(68, 68),
-                                  backgroundColor:
-                                      Color.fromRGBO(67, 54, 51, 100),
-                                  shape: CircleBorder(),
-                                ),
-                                child: const Icon(
-                                  size: 24,
-                                  Icons.arrow_forward,
-                                  color: Color.fromRGBO(222, 203, 183, 100),
-                                )),
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                fixedSize: const Size(68, 68),
+                                backgroundColor:
+                                    Color.fromRGBO(67, 54, 51, 100),
+                                shape: CircleBorder(),
+                              ),
+                              child: InkWell(
+                                  onTap: () {
+                                    registerUser();
+                                  },
+                                  child: const Icon(
+                                    size: 24,
+                                    Icons.arrow_forward,
+                                    color: Color.fromRGBO(222, 203, 183, 100),
+                                  )),
+                            ),
                           ],
                         ),
                       )),
