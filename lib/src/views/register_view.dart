@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:task_track/src/services/user_service.dart';
+import 'package:task_track/src/views/home_view.dart';
 import 'package:task_track/src/views/login_view.dart';
 
 class MyRegisterPage extends StatefulWidget {
@@ -28,16 +29,21 @@ class _MyRegisterPage extends State<MyRegisterPage> {
       Fluttertoast.showToast(
           msg: "Usuário registrado com sucesso.",
           toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
+          gravity: ToastGravity.TOP,
           timeInSecForIosWeb: 3,
           backgroundColor: Colors.green,
           textColor: Colors.white,
           fontSize: 16.0);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MyHomePage()),
+          );
     } else {
       Fluttertoast.showToast(
         msg: "Falha ao registrar usuário.",
         toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
+        gravity: ToastGravity.TOP,
         timeInSecForIosWeb: 3,
         backgroundColor: Colors.red,
         textColor: Colors.white,

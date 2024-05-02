@@ -8,9 +8,8 @@ class UserService {
   UserService({required this.baseUrl});
 
   Future<http.Response> register(
-      String name, String email, String password) async {
+    String name, String email, String password) async {
     var urlToPost = '$baseUrl/v2/users';
-    print(urlToPost);
     var result = await http.post(
       Uri.parse(urlToPost),
       headers: {'Content-Type': 'application/json'},
@@ -20,8 +19,7 @@ class UserService {
         'password': password,
       }),
     );
-    print('Response status: ${result.statusCode}');
-    print('Response body: ${result.body}');
+
     return result;
   }
 }
