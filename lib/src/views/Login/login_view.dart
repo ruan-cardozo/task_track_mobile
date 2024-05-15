@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:task_track/src/services/user_service.dart';
 import 'package:task_track/src/views/Home/home_view.dart';
-import 'package:task_track/src/views/Register/register_view.dart';
 import 'package:task_track/src/widget/LoginForm/login_footer.dart';
 import 'package:task_track/src/widget/LoginForm/login_form.dart';
 import 'package:task_track/src/widget/LoginForm/login_header.dart';
