@@ -8,9 +8,10 @@ class UserService {
 
   UserService({required this.baseUrl});
 
-  Future<http.Response> register(
-      String name, String email, String password) async {
+  Future<http.Response> register(String name, String email, String password) async {
+
     var urlToPost = '$baseUrl/v2/users';
+    
     var result = await http.post(
       Uri.parse(urlToPost),
       headers: {'Content-Type': 'application/json'},

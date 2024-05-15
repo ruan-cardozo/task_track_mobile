@@ -22,7 +22,8 @@ class _MyRegisterPage extends State<MyRegisterPage> {
   final userService = UserService(baseUrl: 'http://172.24.3.79:3000');
 
   void registerUser() async {
-    var response = await userService.register(userController.text, emailController.text, passwordController.text);
+    var response = await userService.register(
+        userController.text, emailController.text, passwordController.text);
 
     if (response.statusCode == 201) {
       Fluttertoast.showToast(
