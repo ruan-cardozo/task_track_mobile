@@ -22,8 +22,7 @@ class _MyRegisterPage extends State<MyRegisterPage> {
   final userService = UserService(baseUrl: 'http://172.24.3.79:3000');
 
   void registerUser() async {
-    var response = await userService.register(
-        userController.text, emailController.text, passwordController.text);
+    var response = await userService.register(userController.text, emailController.text, passwordController.text);
 
     if (response.statusCode == 201) {
       Fluttertoast.showToast(
@@ -38,7 +37,7 @@ class _MyRegisterPage extends State<MyRegisterPage> {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => MyHomePage()),
-          );
+      );
     } else {
       Fluttertoast.showToast(
         msg: "Falha ao registrar usuário.",
@@ -162,21 +161,24 @@ class _MyRegisterPage extends State<MyRegisterPage> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const MyLoginPage(title: 'Teste')),
-                                );
-                              },
-                              child: const Text(
-                                'Login',
-                                style: TextStyle(
-                                  fontSize: 36,
-                                  color: Color.fromRGBO(67, 54, 51, 100),
-                                  decoration: TextDecoration.none,
+                            Expanded(
+                              // Adiciona o widget Expanded aqui
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const MyLoginPage(title: 'Teste')),
+                                  );
+                                },
+                                child: const Text(
+                                  'Login',
+                                  style: TextStyle(
+                                    fontSize: 32,
+                                    color: Color.fromRGBO(67, 54, 51, 100),
+                                    decoration: TextDecoration.none,
+                                  ),
                                 ),
                               ),
                             ),

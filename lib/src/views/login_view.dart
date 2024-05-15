@@ -24,8 +24,8 @@ class _MyLoginPageState extends State<MyLoginPage> {
   void loginUser() async {
     var response =
         await userService.login(emailController.text, passwordController.text);
-    print(response.body);
-    if (response.statusCode == 200) {
+
+    if ([200, 201].contains(response.statusCode)) {
       Fluttertoast.showToast(
           msg: "Usuário logado com sucesso.",
           toastLength: Toast.LENGTH_SHORT,
@@ -35,10 +35,10 @@ class _MyLoginPageState extends State<MyLoginPage> {
           textColor: Colors.white,
           fontSize: 16.0);
 
-          Navigator.push(
+      Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => MyHomePage()),
-          );
+      );
     } else {
       Fluttertoast.showToast(
         msg: "Falha ao logar usuário.",
@@ -132,8 +132,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     ),
                   ),
                   const Align(
-                    alignment:
-                        Alignment.centerRight, // Alinha o widget à direita
+                    alignment: Alignment.centerRight,
                     child: Text(
                       'Esqueceu a senha?',
                       style: TextStyle(
@@ -146,13 +145,6 @@ class _MyLoginPageState extends State<MyLoginPage> {
                 ],
               ),
             ),
-            // Align(
-            //   alignment: Alignment.topRight,
-            //   child: ElevatedButton(
-            //     onPressed: () {},
-            //     child: const Text('MyButton'),
-            //   ),
-            // ),
             Expanded(
               flex: 1,
               child: Container(
@@ -164,34 +156,34 @@ class _MyLoginPageState extends State<MyLoginPage> {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 0),
                         child: Row(
-                          // Alterado de Column para Row
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            GestureDetector(
-                              // Adiciona o GestureDetector
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          MyRegisterPage(title: 'Teste')),
-                                );
-                              },
-                              child: const Text(
-                                'Registrar-se',
-                                style: TextStyle(
-                                  fontSize: 36,
-                                  color: Color.fromRGBO(67, 54, 51, 100),
-                                  decoration: TextDecoration.none,
+                            Expanded(
+                              // Adiciona o widget Expanded aqui
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            MyRegisterPage(title: 'Teste')),
+                                  );
+                                },
+                                child: const Text(
+                                  'Registrar-se',
+                                  style: TextStyle(
+                                    fontSize: 32,
+                                    color: Color.fromRGBO(67, 54, 51, 100),
+                                    decoration: TextDecoration.none,
+                                  ),
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                                width: 85), // Adiciona um espaço de 20 pixels
+                            const SizedBox(width: 85),
                             ElevatedButton(
-                                // Botão movido aqui
                                 onPressed: () {},
                                 style: ElevatedButton.styleFrom(
+                                  alignment: Alignment.centerRight,
                                   fixedSize: const Size(68, 68),
                                   backgroundColor:
                                       Color.fromRGBO(67, 54, 51, 100),
