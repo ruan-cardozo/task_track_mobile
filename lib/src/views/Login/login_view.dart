@@ -1,35 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:task_track/src/services/user_service.dart';
-import 'package:task_track/src/views/home_view.dart';
-import 'package:task_track/src/widget/RegistrationForm/registration_form.dart';
-import 'package:task_track/src/widget/RegistrationForm/registration_footer.dart';
-import 'package:task_track/src/widget/RegistrationForm/registration_header.dart';
+import 'package:task_track/src/views/Home/home_view.dart';
+import 'package:task_track/src/views/Register/register_view.dart';
+import 'package:task_track/src/widget/LoginForm/login_footer.dart';
+import 'package:task_track/src/widget/LoginForm/login_form.dart';
+import 'package:task_track/src/widget/LoginForm/login_header.dart';
 
-class MyRegisterPage extends StatefulWidget {
+class MyLoginPage extends StatefulWidget {
   final String title;
 
-  const MyRegisterPage({super.key, required this.title});
+  const MyLoginPage({Key? key, required this.title}) : super(key: key);
 
   @override
-  _MyRegisterPage createState() => _MyRegisterPage();
+  _MyLoginPageState createState() => _MyLoginPageState();
 }
 
-class _MyRegisterPage extends State<MyRegisterPage> {
+class _MyLoginPageState extends State<MyLoginPage> {
   String loginBox = "";
-  final TextEditingController userController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   FocusNode myFocusNode = FocusNode();
   final userService = UserService(baseUrl: 'http://172.24.3.79:3000');
 
-  void registerUser() async {
-    var response = await userService.register(
-        userController.text, emailController.text, passwordController.text);
+  void loginUser() async {
+    var response =
+        await userService.login(emailController.text, passwordController.text);
 
-    if (response.statusCode == 201) {
+    if ([200, 201].contains(response.statusCode)) {
       Fluttertoast.showToast(
-          msg: "Usuário registrado com sucesso.",
+          msg: "Usuário logado com sucesso.",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.TOP,
           timeInSecForIosWeb: 3,
@@ -43,7 +44,7 @@ class _MyRegisterPage extends State<MyRegisterPage> {
       );
     } else {
       Fluttertoast.showToast(
-        msg: "Falha ao registrar usuário.",
+        msg: "Falha ao logar usuário.",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.TOP,
         timeInSecForIosWeb: 3,
@@ -62,17 +63,13 @@ class _MyRegisterPage extends State<MyRegisterPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
-            RegistrationHeader(),
-            const SizedBox(height: 100),
-            RegistrationForm(
-              userController: userController,
-              emailController: emailController,
-              passwordController: passwordController,
-            ),
-            RegistrationFooter(
-              isKeyboardVisible: isKeyboardVisible,
-              registerUser: registerUser,
-            ),
+            LoginHeader(),
+            LoginForm(
+                emailController: emailController,
+                passwordController: passwordController
+                ),
+            LoginFooter(
+                isKeyboardVisible: isKeyboardVisible, loginUser: loginUser)
           ],
         ),
       ),

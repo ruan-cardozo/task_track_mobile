@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_track/src/views/register_view.dart';
+import 'package:task_track/src/views/Register/register_view.dart';
 
 class LoginFooter extends StatelessWidget {
   final bool isKeyboardVisible;
