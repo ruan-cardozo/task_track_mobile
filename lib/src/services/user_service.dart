@@ -22,4 +22,22 @@ class UserService {
 
     return result;
   }
+
+  Future<http.Response> login(String email, String password) async {
+    print(email + password);
+
+    var urlToPost = '$baseUrl/v2/login';
+    var result = await http.post(
+      Uri.parse(urlToPost),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'email': email,
+        'password': password
+        }),
+    );
+
+    return result;
+  }
+  
+
 }

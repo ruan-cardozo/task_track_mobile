@@ -187,12 +187,10 @@ class _MyRegisterPage extends State<MyRegisterPage> {
                                 fixedSize: const Size(68, 68),
                                 backgroundColor:
                                     Color.fromRGBO(67, 54, 51, 100),
-                                shape: CircleBorder(),
+                                shape: const CircleBorder(),
                               ),
                               child: InkWell(
-                                  onTap: () {
-                                    registerUser();
-                                  },
+                                  onTap: () => registerUser(),
                                   child: const Icon(
                                     size: 24,
                                     Icons.arrow_forward,

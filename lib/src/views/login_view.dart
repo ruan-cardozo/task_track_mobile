@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:task_track/src/services/user_service.dart';
+import 'package:task_track/src/views/home_view.dart';
 import 'package:task_track/src/views/register_view.dart';
 
 class MyLoginPage extends StatefulWidget {
@@ -12,11 +15,42 @@ class MyLoginPage extends StatefulWidget {
 }
 
 class _MyLoginPageState extends State<MyLoginPage> {
-
   String loginBox = "";
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   FocusNode myFocusNode = FocusNode();
+  final userService = UserService(baseUrl: 'http://172.24.3.79:3000');
+
+  void loginUser() async {
+    var response =
+        await userService.login(emailController.text, passwordController.text);
+    print(response.body);
+    if (response.statusCode == 200) {
+      Fluttertoast.showToast(
+          msg: "Usuário logado com sucesso.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.TOP,
+          timeInSecForIosWeb: 3,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          fontSize: 16.0);
+
+          Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MyHomePage()),
+          );
+    } else {
+      Fluttertoast.showToast(
+        msg: "Falha ao logar usuário.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.TOP,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +186,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                                 width: 85), // Adiciona um espaço de 20 pixels
                             ElevatedButton(
                                 // Botão movido aqui
@@ -161,13 +195,15 @@ class _MyLoginPageState extends State<MyLoginPage> {
                                   fixedSize: const Size(68, 68),
                                   backgroundColor:
                                       Color.fromRGBO(67, 54, 51, 100),
-                                  shape: CircleBorder(),
+                                  shape: const CircleBorder(),
                                 ),
-                                child: const Icon(
-                                  size: 24,
-                                  Icons.arrow_forward,
-                                  color: Color.fromRGBO(222, 203, 183, 100),
-                                )),
+                                child: InkWell(
+                                    onTap: () => loginUser(),
+                                    child: const Icon(
+                                      size: 24,
+                                      Icons.arrow_forward,
+                                      color: Color.fromRGBO(222, 203, 183, 100),
+                                    ))),
                           ],
                         ),
                       )),
