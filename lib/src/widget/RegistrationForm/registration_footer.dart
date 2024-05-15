@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:task_track/src/views/login_view.dart';
+import 'package:task_track/src/views/Login/login_view.dart';
 
 class RegistrationFooter extends StatelessWidget {
   final bool isKeyboardVisible;
