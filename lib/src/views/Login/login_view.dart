@@ -21,8 +21,17 @@ class _MyLoginPageState extends State<MyLoginPage> {
   final TextEditingController passwordController = TextEditingController();
   FocusNode myFocusNode = FocusNode();
   final userService = UserService(baseUrl: 'http://172.24.3.79:3000');
-
+  bool debugSkipLogin = true;
   void loginUser() async {
+
+    if (debugSkipLogin) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MyHomePage()),
+      );
+      return;
+    }
+
     var response =
         await userService.login(emailController.text, passwordController.text);
 
