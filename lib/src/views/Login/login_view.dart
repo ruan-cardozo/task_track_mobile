@@ -25,14 +25,6 @@ class _MyLoginPageState extends State<MyLoginPage> {
   bool debugSkipLogin = true;
   void loginUser() async {
 
-    if (debugSkipLogin) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => MyHomePage()),
-      );
-      return;
-    }
-
     var response =
         await userService.login(emailController.text, passwordController.text);
 
