@@ -28,7 +28,7 @@ class _MyRegisterPage extends State<MyRegisterPage> {
     var response = await userService.register(
         userController.text, emailController.text, passwordController.text);
 
-    if (response.statusCode == 201) {
+    if ([200, 201].contains(response.statusCode)) {
       Fluttertoast.showToast(
           msg: "Usuário registrado com sucesso.",
           toastLength: Toast.LENGTH_SHORT,
