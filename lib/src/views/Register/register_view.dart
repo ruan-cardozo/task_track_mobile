@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:task_track/src/config/api_config.dart';
 import 'package:task_track/src/services/user_service.dart';
 import 'package:task_track/src/views/Home/home_view.dart';
 import 'package:task_track/src/widget/RegistrationForm/registration_form.dart';
@@ -21,7 +22,7 @@ class _MyRegisterPage extends State<MyRegisterPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   FocusNode myFocusNode = FocusNode();
-  final userService = UserService(baseUrl: 'http://172.24.3.79:3000');
+  final userService = UserService(baseUrl: BASE_URL);
 
   void registerUser() async {
     var response = await userService.register(

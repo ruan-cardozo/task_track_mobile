@@ -5,6 +5,7 @@ import 'package:task_track/src/views/Home/home_view.dart';
 import 'package:task_track/src/widget/LoginForm/login_footer.dart';
 import 'package:task_track/src/widget/LoginForm/login_form.dart';
 import 'package:task_track/src/widget/LoginForm/login_header.dart';
+import 'package:task_track/src/config/api_config.dart';
 
 class MyLoginPage extends StatefulWidget {
   final String title;
@@ -20,7 +21,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   FocusNode myFocusNode = FocusNode();
-  final userService = UserService(baseUrl: 'http://172.24.3.79:3000');
+  final userService = UserService(baseUrl: BASE_URL);
   bool debugSkipLogin = true;
   void loginUser() async {
 
