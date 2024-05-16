@@ -3,10 +3,11 @@ import 'package:task_track/src/widget/BottomNavigator/bottom_navigation_bar.dart
 import 'package:task_track/src/widget/ButtonGrid/button_grid.dart';
 import 'package:task_track/src/widget/RectangleText/rectangle_text.dart';
 
-const AVATAR_IMAGE =
-    'https://s2-g1.glbimg.com/q1ZgqfWQGKQyxtRoMoRK03gMVfk=/0x0:959x540/600x0/smart/filters:gifv():strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2021/h/J/Ui4XL0So6yEilj6DeGXg/memedoge.jpg';
+const AVATAR_IMAGE = 'https://s2-g1.glbimg.com/q1ZgqfWQGKQyxtRoMoRK03gMVfk=/0x0:959x540/600x0/smart/filters:gifv():strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2021/h/J/Ui4XL0So6yEilj6DeGXg/memedoge.jpg';
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }

@@ -23,10 +23,10 @@ class _MyLoginPageState extends State<MyLoginPage> {
   FocusNode myFocusNode = FocusNode();
   final userService = UserService(baseUrl: BASE_URL);
   bool debugSkipLogin = true;
+
   void loginUser() async {
 
-    var response =
-        await userService.login(emailController.text, passwordController.text);
+    var response = await userService.login(emailController.text, passwordController.text);
 
     if ([200, 201].contains(response.statusCode)) {
       Fluttertoast.showToast(
