@@ -14,14 +14,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  int _numberOfTasks = 0; // Adicionando o número de tarefas
+  int _numberOfTasks = 0; 
 
   @override
   void initState() {
     super.initState();
-    // Aqui você pode chamar uma função para carregar o número de tarefas do backend
-    // Exemplo: _loadNumberOfTasks();
-    _numberOfTasks = 10; // Supondo que 10 seja o número inicial de tarefas
+    
+    _numberOfTasks = 10; 
   }
 
   void _onItemTapped(int index) {
@@ -66,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: 10.0), // Ajuste o preenchimento horizontal do AppBar
+            horizontal: 10.0), 
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[

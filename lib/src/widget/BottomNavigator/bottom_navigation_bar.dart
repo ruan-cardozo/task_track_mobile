@@ -14,7 +14,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment
-          .bottomCenter, // Alinhar widgets filhos na parte inferior central
+          .bottomCenter, 
       children: [
         Positioned(
           height: 94,
