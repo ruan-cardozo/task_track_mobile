@@ -11,7 +11,7 @@ class SquareButton extends StatelessWidget {
   final TextStyle? titleStyle;
 
   const SquareButton({
-    Key? key,
+    super.key,
     required this.color,
     required this.title,
     required this.width,
@@ -20,7 +20,7 @@ class SquareButton extends StatelessWidget {
     required this.icon,
     this.titleColor = Colors.white,
     this.titleStyle,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -35,22 +35,22 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Row(
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               radius: 20,
               backgroundImage: NetworkImage(AVATAR_IMAGE),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Minhas Tarefas',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text(
                   '$_numberOfTasks tarefas hoje',
                   style: TextStyle(
@@ -64,12 +64,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
             horizontal: 10.0), 
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             const Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -81,13 +81,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(height: 20),
-            ButtonGrid(),
-            SizedBox(height: 0),
-            Expanded(
+            const SizedBox(height: 20),
+            const ButtonGrid(),
+            const SizedBox(height: 0),
+            const Expanded(
               child: ChecklistArea(),
             ),
-            SizedBox(height: 0),
+            const SizedBox(height: 0),
             buildBottomNavigationBar(),
           ],
         ),

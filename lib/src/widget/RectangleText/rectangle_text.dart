@@ -11,7 +11,10 @@ class TaskWidget extends StatelessWidget {
   final Task task;
   final ValueChanged<bool?>? onChanged;
 
-  const TaskWidget({required this.task, this.onChanged});
+  const TaskWidget({
+    super.key, 
+    required this.task, 
+    this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +33,8 @@ class TaskWidget extends StatelessWidget {
 }
 
 class ChecklistArea extends StatefulWidget {
+  const ChecklistArea({super.key});
+
   @override
   _ChecklistAreaState createState() => _ChecklistAreaState();
 }
@@ -52,8 +57,8 @@ class _ChecklistAreaState extends State<ChecklistArea> {
       ),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
             child: Text(
               'Importantes',
               style: TextStyle(

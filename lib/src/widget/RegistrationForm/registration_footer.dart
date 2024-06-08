@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:task_track/src/views/Login/login_view.dart';
 
@@ -6,7 +5,8 @@ class RegistrationFooter extends StatelessWidget {
   final bool isKeyboardVisible;
   final Function registerUser;
 
-  RegistrationFooter({
+  const RegistrationFooter({
+    super.key, 
     required this.isKeyboardVisible,
     required this.registerUser,
   });
@@ -51,7 +51,7 @@ class RegistrationFooter extends StatelessWidget {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(68, 68),
-                      backgroundColor: Color.fromRGBO(67, 54, 51, 100),
+                      backgroundColor: const Color.fromRGBO(67, 54, 51, 100),
                       shape: const CircleBorder(),
                     ),
                     child: InkWell(

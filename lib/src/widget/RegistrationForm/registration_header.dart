@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 class RegistrationHeader extends StatelessWidget {
+  const RegistrationHeader({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Expanded(

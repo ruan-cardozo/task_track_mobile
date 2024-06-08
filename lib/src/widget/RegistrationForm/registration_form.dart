@@ -6,7 +6,8 @@ class RegistrationForm extends StatelessWidget {
   final TextEditingController emailController;
   final TextEditingController passwordController;
 
-  RegistrationForm({
+  const RegistrationForm({
+    super.key, 
     required this.userController,
     required this.emailController,
     required this.passwordController,

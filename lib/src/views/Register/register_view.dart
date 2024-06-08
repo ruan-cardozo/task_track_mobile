@@ -40,7 +40,7 @@ class _MyRegisterPage extends State<MyRegisterPage> {
 
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => MyHomePage()),
+        MaterialPageRoute(builder: (context) => const MyHomePage()),
       );
     } else {
       Fluttertoast.showToast(
@@ -63,7 +63,7 @@ class _MyRegisterPage extends State<MyRegisterPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
-            RegistrationHeader(),
+            const RegistrationHeader(),
             const SizedBox(height: 100),
             RegistrationForm(
               userController: userController,
