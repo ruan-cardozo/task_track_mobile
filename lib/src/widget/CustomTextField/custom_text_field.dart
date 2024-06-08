@@ -10,7 +10,8 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     required this.hintText,
     required this.labelText,
-    this.obscureText = false,
+    this.obscureText = false, 
+    bool? enabled,
   });
 
   @override
