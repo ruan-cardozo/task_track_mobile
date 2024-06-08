@@ -5,7 +5,8 @@ class LoginFooter extends StatelessWidget {
   final bool isKeyboardVisible;
   final VoidCallback loginUser;
 
-  LoginFooter({
+  const LoginFooter({
+    super.key,
     required this.isKeyboardVisible,
     required this.loginUser,
   });
@@ -29,7 +30,7 @@ class LoginFooter extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MyRegisterPage(title: 'Teste'),
+                          builder: (context) => const MyRegisterPage(title: 'Teste'),
                         ),
                       );
                     },
@@ -49,7 +50,7 @@ class LoginFooter extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     alignment: Alignment.centerRight,
                     fixedSize: const Size(68, 68),
-                    backgroundColor: Color.fromRGBO(67, 54, 51, 100),
+                    backgroundColor: const Color.fromRGBO(67, 54, 51, 100),
                     shape: const CircleBorder(),
                   ),
                   child: const Icon(

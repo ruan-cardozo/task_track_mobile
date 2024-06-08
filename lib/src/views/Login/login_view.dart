@@ -26,6 +26,10 @@ class _MyLoginPageState extends State<MyLoginPage> {
 
   void loginUser() async {
 
+    if (debugSkipLogin) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+    }
+
     var response = await userService.login(emailController.text, passwordController.text);
 
     if ([200, 201].contains(response.statusCode)) {
@@ -40,7 +44,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
 
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => MyHomePage()),
+        MaterialPageRoute(builder: (context) => const MyHomePage()),
       );
     } else {
       Fluttertoast.showToast(
@@ -63,7 +67,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
-            LoginHeader(),
+            const LoginHeader(),
             LoginForm(
                 emailController: emailController,
                 passwordController: passwordController

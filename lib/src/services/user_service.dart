@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class UserService {
@@ -23,7 +24,7 @@ class UserService {
 
       return result;
     } catch (e) {
-      print('An error occurred: $e');
+      debugPrint('An error occurred: $e');
 
       return http.Response('An error occurred: $e', 500);
     }
@@ -41,7 +42,7 @@ class UserService {
 
       return result;
     } catch (e) {
-      print('An error occurred: $e');
+      debugPrint('An error occurred: $e');
 
       return http.Response('An error occurred: $e', 500);
     }

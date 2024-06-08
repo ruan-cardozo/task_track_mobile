@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:task_track/src/widget/BottomNavigator/bottom_navigation_bar.dart';
 import 'package:task_track/src/widget/SquareButton/square_button.dart';
 
 class ButtonGrid extends StatelessWidget {
+  const ButtonGrid({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Flexible(
@@ -25,7 +25,7 @@ class ButtonGrid extends StatelessWidget {
                     titleColor: Colors.black,
                     icon: Icons.list_alt,
                     onPressed: () {
-                      print('Button 1 pressed');
+                      debugPrint('Button 1 pressed');
                     },
                   ),
                 ),
@@ -40,7 +40,7 @@ class ButtonGrid extends StatelessWidget {
                     titleColor: Colors.black,
                     icon: Icons.poll,
                     onPressed: () {
-                      print('Button 2 pressed');
+                      debugPrint('Button 2 pressed');
                     },
                   ),
                 ),
@@ -62,7 +62,7 @@ class ButtonGrid extends StatelessWidget {
                     titleStyle:
                         const TextStyle(color: Colors.black, fontSize: 14),
                     onPressed: () {
-                      print('Button 3 pressed');
+                      debugPrint('Button 3 pressed');
                     },
                   ),
                 ),
@@ -77,7 +77,7 @@ class ButtonGrid extends StatelessWidget {
                     titleStyle:
                         const TextStyle(color: Colors.black, fontSize: 14),
                     onPressed: () {
-                      print('Button 4 pressed');
+                      debugPrint('Button 4 pressed');
                     },
                   ),
                 )
