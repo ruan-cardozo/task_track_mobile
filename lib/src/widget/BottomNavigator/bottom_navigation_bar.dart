@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_track/src/views/Profile/profile_view.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   final int selectedIndex;
@@ -27,7 +28,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
             currentIndex: selectedIndex,
             selectedItemColor: const Color.fromRGBO(67, 54, 51, 100),
             unselectedItemColor: const Color.fromRGBO(143, 143, 143, 100),
-            onTap: onItemTapped,
+            onTap: (index) {
+              _onItemTapped(context, index);
+            },
             iconSize: 30.0,
             selectedLabelStyle: const TextStyle(fontSize: 14),
             unselectedLabelStyle: const TextStyle(fontSize: 14),
@@ -61,6 +64,27 @@ class CustomBottomNavigationBar extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  void _onItemTapped(BuildContext context, int index) {
+    switch (index) {
+      case 0:
+        // ação para o primeiro item
+        break;
+      case 1:
+        // ação para o segundo item
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MyProfileView()),
+        );
+        break;
+      case 3:
+        // ação para o quarto item
+        break;
+    }
+    onItemTapped(index); // Para manter a funcionalidade de callback original
   }
 
   List<BottomNavigationBarItem> get _navBarItems => const [

@@ -5,13 +5,15 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final String labelText;
   final bool obscureText;
-
+  final Widget? suffixIcon;
   const CustomTextField({
     super.key, 
     required this.controller,
     required this.hintText,
     required this.labelText,
-    this.obscureText = false,
+    this.obscureText = false, 
+    bool? enabled,
+    this.suffixIcon,
   });
 
   @override
@@ -20,6 +22,7 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText,
       decoration: InputDecoration(
+        suffixIcon: suffixIcon,
         hintText: hintText,
         hintStyle: const TextStyle(color: Color.fromRGBO(222, 203, 183, 100)),
         enabledBorder: const UnderlineInputBorder(
