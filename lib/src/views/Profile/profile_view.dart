@@ -1,31 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:task_track/src/config/api_config.dart';
-import 'package:task_track/src/widget/CustomTextField/custom_text_field.dart'; // Certifique-se de que este arquivo existe e contém a constante AVATAR_IMAGE
+import 'package:task_track/src/widget/CustomButton/custom_button.dart';
+import 'package:task_track/src/widget/CustomTextField/custom_text_field.dart';
 
-class MyProfileView extends StatelessWidget {
+class MyProfileView extends StatefulWidget {
+  MyProfileView({Key? key}) : super(key: key);
+
+  @override
+  _MyProfileViewState createState() => _MyProfileViewState();
+}
+
+class _MyProfileViewState extends State<MyProfileView> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  MyProfileView({super.key});
+  bool isEditing = false;
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Meu Perfil'), 
+        title: const Text('Meu Perfil'),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(height: 60), 
+            const SizedBox(height: 15),
             const CircleAvatar(
-              radius: 150,
+              radius: 100,
               backgroundImage: NetworkImage(AVATAR_IMAGE),
             ),
-            const SizedBox(height: 20), 
+            const SizedBox(height: 20),
             const Text(
               'Nome do Usuário',
               style: TextStyle(
@@ -41,7 +50,9 @@ class MyProfileView extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            _buildProfileForm(),
+            Expanded(
+              child: _buildProfileForm(),
+            ),
           ],
         ),
       ),
@@ -49,31 +60,71 @@ class MyProfileView extends StatelessWidget {
   }
 
   Widget _buildProfileForm() {
-    return Form(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CustomTextField(
+
+    return ListView(
+      padding: const EdgeInsets.all(8.0),
+      children: [
+        IgnorePointer(
+          ignoring: !isEditing,
+          child: CustomTextField(
             controller: nameController,
             hintText: 'Digite seu nome',
             labelText: 'Nome',
           ),
-          const SizedBox(
-              height: 16), // Espaçamento entre os campos do formulário
-          CustomTextField(
+        ),
+        const SizedBox(height: 16),
+        IgnorePointer(
+          ignoring: !isEditing,
+          child: CustomTextField(
             controller: emailController,
             hintText: 'Digite seu email',
             labelText: 'Email',
           ),
-          const SizedBox(height: 16),
-          CustomTextField(
+        ),
+        const SizedBox(height: 16),
+        IgnorePointer(
+          ignoring: !isEditing,
+          child: CustomTextField(
             controller: passwordController,
             hintText: 'Digite sua senha',
             labelText: 'Senha',
-            obscureText: true, // Para esconder o texto da senha
+            obscureText: _obscureText,
+            suffixIcon: IconButton(
+              icon: Icon(
+                _obscureText ? Icons.visibility : Icons.visibility_off,
+              ),
+              onPressed: () {
+                setState(() {
+                  _obscureText = !_obscureText;
+                });
+              },
+            ),
           ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 50),
+        CustomButton(
+          text: 'Editar',
+          textStyle: TextStyle(
+            fontSize: 30,
+            color: Colors.brown[200],
+          ),
+          onPressed: () {
+            setState(() {
+              isEditing = !isEditing;
+            });
+          },
+        ),
+        CustomButton(
+          text: 'Salvar',
+          textStyle: TextStyle(
+            fontSize: 30,
+            color: Colors.brown[200],
+          ),
+          onPressed: () {
+            // Implementar a lógica para salvar os dados do usuário
+          },
+        ),
+      ],
     );
   }
 }
