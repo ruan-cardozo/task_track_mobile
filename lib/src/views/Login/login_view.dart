@@ -28,7 +28,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
   void loginUser() async {
 
     if (debugSkipLogin) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const TarefaView()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()));
     }
 
     var response = await userService.login(emailController.text, passwordController.text);
@@ -71,7 +71,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
             const LoginHeader(),
             LoginForm(
                 emailController: emailController,
-                passwordController: passwordController
+                passwordController: passwordController,
                 ),
             LoginFooter(
                 isKeyboardVisible: isKeyboardVisible, loginUser: loginUser)

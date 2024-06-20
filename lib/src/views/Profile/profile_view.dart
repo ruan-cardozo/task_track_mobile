@@ -23,6 +23,7 @@ class _MyProfileViewState extends State<MyProfileView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Meu Perfil'),
+        backgroundColor: const Color.fromRGBO(67, 54, 51, 1),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),

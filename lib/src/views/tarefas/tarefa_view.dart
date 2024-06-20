@@ -40,8 +40,8 @@ class _TarefaViewState extends State<TarefaView> {
                 color: Color.fromRGBO(67, 54, 51, 1),
               ),
             ),
-            TextField(
-              decoration: const InputDecoration(
+            const TextField(
+              decoration: InputDecoration(
                 hintText: 'Lorem ipsum',
               ),
             ),
@@ -54,8 +54,8 @@ class _TarefaViewState extends State<TarefaView> {
                 color: Color.fromRGBO(67, 54, 51, 1),
               ),
             ),
-            TextField(
-              decoration: const InputDecoration(
+            const TextField(
+              decoration: InputDecoration(
                 hintText: '29/12/2003',
               ),
             ),
@@ -70,7 +70,7 @@ class _TarefaViewState extends State<TarefaView> {
             ),
             DropdownButton<String>(
               value: dropdownValue,
-              icon: const Icon(Icons.arrow_downward),
+              icon: const Icon(Icons.expand_more),
               iconSize: 24,
               elevation: 16,
               style: const TextStyle(color: Color.fromRGBO(67, 54, 51, 1)),
