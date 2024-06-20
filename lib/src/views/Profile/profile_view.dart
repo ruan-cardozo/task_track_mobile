@@ -4,7 +4,7 @@ import 'package:task_track/src/widget/CustomButton/custom_button.dart';
 import 'package:task_track/src/widget/CustomTextField/custom_text_field.dart';
 
 class MyProfileView extends StatefulWidget {
-  MyProfileView({Key? key}) : super(key: key);
+  const MyProfileView({Key? key}) : super(key: key);
 
   @override
   _MyProfileViewState createState() => _MyProfileViewState();
