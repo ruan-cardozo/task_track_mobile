@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:task_track/src/services/auth_service.dart';
 import 'package:task_track/src/views/Home/home_view.dart';
+import 'package:task_track/src/views/tarefas/tarefa_view.dart';
 import 'package:task_track/src/widget/LoginForm/login_footer.dart';
 import 'package:task_track/src/widget/LoginForm/login_form.dart';
 import 'package:task_track/src/widget/LoginForm/login_header.dart';
@@ -71,7 +72,8 @@ class _MyLoginPageState extends State<MyLoginPage> {
             const LoginHeader(),
             LoginForm(
                 emailController: emailController,
-                passwordController: passwordController),
+                passwordController: passwordController,
+                ),
             LoginFooter(
                 isKeyboardVisible: isKeyboardVisible, loginUser: loginUser)
           ],

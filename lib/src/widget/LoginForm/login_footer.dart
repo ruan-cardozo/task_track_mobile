@@ -33,28 +33,28 @@ class LoginFooter extends StatelessWidget {
                           builder: (context) => const MyRegisterPage(title: 'Teste'),
                         ),
                       );
-                    },
+                    },                    
                     child: const Text(
                       'Registrar-se',
-                      style: TextStyle(
-                        fontSize: 32,
+                      style: TextStyle(                                             
+                        fontSize: 24,
                         color: Color.fromRGBO(67, 54, 51, 100),
                         decoration: TextDecoration.none,
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(width: 85),
+                const SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: loginUser,
                   style: ElevatedButton.styleFrom(
                     alignment: Alignment.centerRight,
-                    fixedSize: const Size(68, 68),
+                    fixedSize: const Size(48, 48),
                     backgroundColor: const Color.fromRGBO(67, 54, 51, 100),
                     shape: const CircleBorder(),
                   ),
                   child: const Icon(
-                    size: 24,
+                    size: 18,
                     Icons.arrow_forward,
                     color: Color.fromRGBO(222, 203, 183, 100),
                   ),
