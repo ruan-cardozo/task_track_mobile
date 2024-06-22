@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserService {
   final String baseUrl;
@@ -21,7 +22,6 @@ class UserService {
           'password': password,
         }),
       );
-
       return result;
     } catch (e) {
       debugPrint('An error occurred: $e');
@@ -39,12 +39,26 @@ class UserService {
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'email': email, 'password': password}),
       );
+      var decodedResult = jsonDecode(result.body);
 
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('userToken', decodedResult['acess_token']);
+      await prefs.setInt('userId', decodedResult['user']['sub']);
       return result;
     } catch (e) {
       debugPrint('An error occurred: $e');
 
       return http.Response('An error occurred: $e', 500);
     }
+  }
+
+  Future<String> getUserToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('userToken');
+    if (token == null) {
+      throw Exception('No token found');
+    }
+
+    return token;
   }
 }
