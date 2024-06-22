@@ -77,7 +77,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => MyProfileView()),
+          MaterialPageRoute(builder: (context) => const MyProfileView()),
         );
         break;
       case 3:
