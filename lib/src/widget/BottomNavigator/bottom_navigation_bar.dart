@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_track/src/views/Profile/profile_view.dart';
+import 'package:task_track/src/views/Tasks/tarefa_view.dart';
+import 'package:task_track/src/views/Tasks/task_page_view.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   final int selectedIndex;
@@ -14,8 +16,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      alignment: Alignment
-          .bottomCenter, 
+      alignment: Alignment.bottomCenter,
       children: [
         Positioned(
           height: 94,
@@ -50,13 +51,24 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 shape: const CircleBorder(),
               ),
               onPressed: () {
-                // ação do botão para abrir a tela de tarefas
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => TasksPage(status: 'task_page_view')));
+                  },
+                ); // ação do botão para abrir a tela de tarefas
               },
-              child: const Center(
-                child: Icon(
-                  Icons.add,
-                  size: 46,
-                  color: Color.fromRGBO(222, 203, 183, 100),
+              child: GestureDetector(
+                onTap: () {
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const TarefaView()));
+                  },
+                child: const Center(
+                  child: Icon(
+                    Icons.add,
+                    size: 46,
+                    color: Color.fromRGBO(222, 203, 183, 100),
+                  ),
                 ),
               ),
             ),

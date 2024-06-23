@@ -1,8 +1,9 @@
+
 import 'package:flutter/material.dart';
-import 'package:task_track/src/config/api_config.dart';
-import 'package:task_track/src/widget/BottomNavigator/bottom_navigation_bar.dart';
+import 'package:task_track/src/services/api_service.dart';
+import 'package:task_track/src/models/task.dart';
 import 'package:task_track/src/widget/ButtonGrid/button_grid.dart';
-import 'package:task_track/src/widget/RectangleText/rectangle_text.dart';
+import 'package:task_track/src/widget/BottomNavigator/bottom_navigation_bar.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -14,12 +15,29 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   int _numberOfTasks = 0;
+  List<Task> _tasks = [];
+  bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
+    _fetchTasks('A fazer'); // Ajuste o status conforme necessário
+  }
 
-    _numberOfTasks = 10;
+  Future<void> _fetchTasks(String status) async {
+    try {
+      final tasks = await fetchTasksByStatus(status);
+      setState(() {
+        _tasks = tasks;
+        _numberOfTasks = tasks.length;
+        _isLoading = false;
+      });
+    } catch (e) {
+      print(e);
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   void _onItemTapped(int index) {
@@ -33,12 +51,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Row(
-          children: [
-            const CircleAvatar(
-              radius: 20,
-              backgroundImage: NetworkImage(AVATAR_IMAGE),
+          children: [            
+            Image.asset(              
+              'lib/assets/images/perfil.png', scale: 4.5, alignment: Alignment.centerRight,
             ),
-            const SizedBox(width: 10),
+            const SizedBox(width: 20),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -82,9 +99,20 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(height: 20),
             const ButtonGrid(),
             const SizedBox(height: 0),
-            const Expanded(
-              child: ChecklistArea(),
-            ),
+            _isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : Expanded(
+                    child: ListView.builder(
+                      itemCount: _tasks.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          title: Text(_tasks[index].description),
+                          leading: const Icon(Icons.task),
+                          subtitle: Text(_tasks[index].status),
+                        );
+                      },
+                    ),
+                  ),
             const SizedBox(height: 0),
             buildBottomNavigationBar(),
           ],

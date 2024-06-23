@@ -1,6 +1,6 @@
+
 import 'package:flutter/material.dart';
-import 'package:task_track/src/views/Login/login_view.dart';
-import 'package:task_track/src/widget/CustomTextField/custom_text_field.dart';
+import 'package:task_track/src/views/Home/home_view.dart';
 
 class LoginForm extends StatelessWidget {
   final TextEditingController emailController;
@@ -24,7 +24,10 @@ class LoginForm extends StatelessWidget {
               controller: emailController,
               decoration: const InputDecoration(
                 labelText: 'Email',
-                prefixIcon: Icon(Icons.email, color: Color.fromRGBO(67, 54, 51, 100),),
+                prefixIcon: Icon(
+                  Icons.email,
+                  color: Color.fromRGBO(67, 54, 51, 100),
+                ),
               ),
             ),
             const SizedBox(height: 16), // Espaço vertical
@@ -33,7 +36,10 @@ class LoginForm extends StatelessWidget {
               controller: passwordController,
               decoration: const InputDecoration(
                 labelText: 'Senha',
-                prefixIcon: Icon(Icons.lock, color: Color.fromRGBO(67, 54, 51, 100),),
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: Color.fromRGBO(67, 54, 51, 100),
+                ),
               ),
               obscureText: true,
             ),
@@ -57,7 +63,8 @@ class LoginForm extends StatelessWidget {
                 //minimumSize: const Size(68, 68),
                 backgroundColor: const Color.fromRGBO(67, 54, 51, 100),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20), // Bordas arredondadas
+                  borderRadius:
+                      BorderRadius.circular(20), // Bordas arredondadas
                 ),
               ),
               child: const Text(
@@ -73,10 +80,13 @@ class LoginForm extends StatelessWidget {
       ),
     );
   }
-}
 
+  void loginUser() {
+    // Implemente a lógica de login aqui
 
-void loginUser() {
-  // Lógica para fazer o login
-  // ...
+    if (emailController == emailController &&
+        passwordController == passwordController) {
+          
+    }
+  }
 }
