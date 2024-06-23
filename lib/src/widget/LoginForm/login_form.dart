@@ -5,11 +5,13 @@ import 'package:task_track/src/views/Home/home_view.dart';
 class LoginForm extends StatelessWidget {
   final TextEditingController emailController;
   final TextEditingController passwordController;
+  final VoidCallback loginUser; // Passar função loginUser como parâmetro
 
   const LoginForm({
     Key? key,
     required this.emailController,
     required this.passwordController,
+    required this.loginUser,
   }) : super(key: key);
 
   @override
@@ -19,7 +21,6 @@ class LoginForm extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            // Campo de Email com ícone
             TextField(
               controller: emailController,
               decoration: const InputDecoration(
@@ -30,8 +31,7 @@ class LoginForm extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 16), // Espaço vertical
-            // Campo de Senha com ícone
+            const SizedBox(height: 16),
             TextField(
               controller: passwordController,
               decoration: const InputDecoration(
@@ -43,7 +43,7 @@ class LoginForm extends StatelessWidget {
               ),
               obscureText: true,
             ),
-            const SizedBox(height: 16), // Espaço vertical
+            const SizedBox(height: 16),
             const Align(
               alignment: Alignment.centerRight,
               child: Text(
@@ -55,20 +55,18 @@ class LoginForm extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 16), // Espaço vertical
+            const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: loginUser, // Defina a função para o botão de login
+              onPressed: loginUser, // Use a função loginUser passada como parâmetro
               style: ElevatedButton.styleFrom(
                 alignment: Alignment.centerRight,
-                //minimumSize: const Size(68, 68),
                 backgroundColor: const Color.fromRGBO(67, 54, 51, 100),
                 shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(20), // Bordas arredondadas
+                  borderRadius: BorderRadius.circular(20),
                 ),
               ),
               child: const Text(
-                'Login', // Troque o ícone pelo texto "Login"
+                'Login',
                 style: TextStyle(
                   fontSize: 18,
                   color: Color.fromRGBO(222, 203, 183, 100),
@@ -79,14 +77,5 @@ class LoginForm extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void loginUser() {
-    // Implemente a lógica de login aqui
-
-    if (emailController == emailController &&
-        passwordController == passwordController) {
-          
-    }
   }
 }

@@ -15,28 +15,30 @@ class RegistrationForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Expanded(      
       flex: 3,
-      child: Column(
-        children: <Widget>[
-          CustomTextField(
-            controller: userController,
-            hintText: "Digite seu nome",
-            labelText: 'Nome',
-          ),
-          CustomTextField(
-            controller: emailController,
-            hintText: "Digite seu email",
-            labelText: 'Email',
-          ),
-          const SizedBox(height: 16.0),
-          CustomTextField(
-            controller: passwordController,
-            hintText: "Digite sua senha",
-            labelText: 'Senha',
-            obscureText: true,
-          ),
-        ],
+      child: SingleChildScrollView(        
+        child: Column(          
+          children: <Widget>[
+            CustomTextField(
+              controller: userController,
+              hintText: "Digite seu nome",
+              labelText: 'Nome',
+            ),
+            CustomTextField(
+              controller: emailController,
+              hintText: "Digite seu email",
+              labelText: 'Email',
+            ),
+            const SizedBox(height: 16.0),
+            CustomTextField(
+              controller: passwordController,
+              hintText: "Digite sua senha",
+              labelText: 'Senha',
+              obscureText: true,
+            ),
+          ],
+        ),
       ),
     );
   }

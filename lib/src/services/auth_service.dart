@@ -8,24 +8,18 @@ class UserService {
 
   UserService({required this.baseUrl});
 
-  Future<http.Response> register(
-      String name, String email, String password) async {
+  Future<http.Response> register(String name, String email, String password) async {
     var urlToPost = '$baseUrl/v2/users';
 
     try {
       var result = await http.post(
         Uri.parse(urlToPost),
         headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
-          'name': name,
-          'email': email,
-          'password': password,
-        }),
+        body: jsonEncode({'name': name, 'email': email, 'password': password}),
       );
       return result;
     } catch (e) {
-      debugPrint('An error occurred: $e');
-
+      debugPrint('An error occurred during registration: $e');
       return http.Response('An error occurred: $e', 500);
     }
   }
@@ -42,12 +36,11 @@ class UserService {
       var decodedResult = jsonDecode(result.body);
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('userToken', decodedResult['acess_token']);
+      await prefs.setString('userToken', decodedResult['access_token']);
       await prefs.setInt('userId', decodedResult['user']['sub']);
       return result;
     } catch (e) {
-      debugPrint('An error occurred: $e');
-
+      debugPrint('An error occurred during login: $e');
       return http.Response('An error occurred: $e', 500);
     }
   }
@@ -58,7 +51,6 @@ class UserService {
     if (token == null) {
       throw Exception('No token found');
     }
-
     return token;
   }
 }
