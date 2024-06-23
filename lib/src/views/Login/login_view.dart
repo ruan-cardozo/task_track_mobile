@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:task_track/src/services/user_service.dart';
+import 'package:task_track/src/services/auth_service.dart';
 import 'package:task_track/src/views/Home/home_view.dart';
 import 'package:task_track/src/widget/LoginForm/login_footer.dart';
 import 'package:task_track/src/widget/LoginForm/login_form.dart';
@@ -22,15 +22,16 @@ class _MyLoginPageState extends State<MyLoginPage> {
   final TextEditingController passwordController = TextEditingController();
   FocusNode myFocusNode = FocusNode();
   final userService = UserService(baseUrl: BASE_URL);
-  bool debugSkipLogin = true;
+  // bool debugSkipLogin = true;
 
   void loginUser() async {
+    // if (debugSkipLogin) {
+    //   Navigator.push(
+    //       context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+    // }
 
-    if (debugSkipLogin) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()));
-    }
-
-    var response = await userService.login(emailController.text, passwordController.text);
+    var response =
+        await userService.login(emailController.text, passwordController.text);
 
     if ([200, 201].contains(response.statusCode)) {
       Fluttertoast.showToast(

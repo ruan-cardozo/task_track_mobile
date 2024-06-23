@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:task_track/src/config/api_config.dart';
-import 'package:task_track/src/services/user_service.dart';
-import 'package:task_track/src/views/Home/home_view.dart';
-import 'package:task_track/src/widget/RegistrationForm/registration_form.dart';
+import 'package:task_track/src/services/auth_service.dart';import 'package:task_track/src/widget/RegistrationForm/registration_form.dart';
 import 'package:task_track/src/widget/RegistrationForm/registration_footer.dart';
 import 'package:task_track/src/widget/RegistrationForm/registration_header.dart';
 
@@ -30,21 +28,16 @@ class _MyRegisterPage extends State<MyRegisterPage> {
 
     if ([200, 201].contains(response.statusCode)) {
       Fluttertoast.showToast(
-          msg: "Usuário registrado com sucesso.",
+          msg: "Usuário cadastrado com sucesso.",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.TOP,
           timeInSecForIosWeb: 3,
           backgroundColor: Colors.green,
           textColor: Colors.white,
           fontSize: 16.0);
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const MyHomePage()),
-      );
     } else {
       Fluttertoast.showToast(
-        msg: "Falha ao registrar usuário.",
+        msg: "Houve um erro ao cadastrar o usuário.",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.TOP,
         timeInSecForIosWeb: 3,
