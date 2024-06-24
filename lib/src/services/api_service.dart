@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:task_track/src/models/task.dart';
 
 class ApiService {
-  static const String baseUrl = 'http://127.0.0.1:3000'; // Substitua pelo host da sua API
+  static const String baseUrl = 'http://172.18.0.2:3000'; // Substitua pelo host da sua API
 
   static Future<http.Response> getTasksByStatus(String status) {
     final url = Uri.parse('$baseUrl/tasks?status=$status');

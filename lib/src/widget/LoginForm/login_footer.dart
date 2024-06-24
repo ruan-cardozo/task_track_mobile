@@ -44,7 +44,7 @@ class LoginFooter extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 20),
+                const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: loginUser,
                   style: ElevatedButton.styleFrom(
@@ -54,7 +54,7 @@ class LoginFooter extends StatelessWidget {
                     shape: const CircleBorder(),
                   ),
                   child: const Icon(
-                    size: 18,
+                    size: 16,
                     Icons.arrow_forward,
                     color: Color.fromRGBO(222, 203, 183, 100),
                   ),

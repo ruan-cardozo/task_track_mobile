@@ -39,25 +39,25 @@ class RegistrationFooter extends StatelessWidget {
                       child: const Text(
                         'Login',
                         style: TextStyle(
-                          fontSize: 32,
+                          fontSize: 24,
                           color: Color.fromRGBO(67, 54, 51, 100),
                           decoration: TextDecoration.none,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 190),
+                  const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(68, 68),
+                      fixedSize: const Size(48, 48),
                       backgroundColor: const Color.fromRGBO(67, 54, 51, 100),
                       shape: const CircleBorder(),
                     ),
                     child: InkWell(
                       onTap: () => registerUser(),
                       child: const Icon(
-                        size: 24,
+                        size: 16,
                         Icons.arrow_forward,
                         color: Color.fromRGBO(222, 203, 183, 100),
                       ),
