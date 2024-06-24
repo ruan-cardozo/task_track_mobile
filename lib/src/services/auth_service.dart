@@ -42,7 +42,7 @@ class UserService {
       var decodedResult = jsonDecode(result.body);
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('userToken', decodedResult['acess_token']);
+      await prefs.setString('userToken', decodedResult['access_token']);
       await prefs.setInt('userId', decodedResult['user']['sub']);
       return result;
     } catch (e) {
