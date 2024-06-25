@@ -3,12 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ProfileService {
+class TaskService {
   final String baseUrl;
-  
-  ProfileService({required this.baseUrl});
 
-  Future<http.Response> getUserProfile() async {
+  TaskService({required this.baseUrl});
+
+  Future<http.Response> createTask(String title, String date, String status, String description) async {
+    var urlToPost = '$baseUrl/v2/tasks';
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('userToken') ?? '';
+    try {
+      var result = await http.post(
+        Uri.parse(urlToPost),
+        headers: {
+          'Content-Type': 'application/json', 
+          'Authorization': 'Bearer $token'
+          },
+        body: jsonEncode({'title': title, 'date': date, 'status': status, 'description': description}),
+      );
+      return result;
+    } catch (e) {
+      debugPrint('Houve um erro ao criar a tarefa: $e');
+      return http.Response('Houve um erro ao criar a tarefa: $e', 400);
+    }
+  }
+
+  Future<http.Response> getTasks() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('userToken') ?? '';
     var id = prefs.getInt('userId') ?? '';

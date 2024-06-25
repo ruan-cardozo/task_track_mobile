@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart';
+import 'package:task_track/src/config/api_config.dart';
+import 'package:task_track/src/services/task_service.dart';
+
 
 class TarefaView extends StatefulWidget {
   const TarefaView({super.key});
@@ -9,7 +14,10 @@ class TarefaView extends StatefulWidget {
 
 class _TarefaViewState extends State<TarefaView> {
   String dropdownValue = 'A fazer';
-  final TextEditingController _notaController = TextEditingController();
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController dateController = TextEditingController();
+  TaskService taskService = TaskService(baseUrl: BASE_URL);
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +48,10 @@ class _TarefaViewState extends State<TarefaView> {
                 color: Color.fromRGBO(67, 54, 51, 1),
               ),
             ),
-            const TextField(
-              decoration: InputDecoration(
-                hintText: 'Lorem ipsum',
+            TextField(
+              controller: titleController,
+              decoration: const InputDecoration(
+                hintText: 'Digite o título da tarefa',
               ),
             ),
             const SizedBox(height: 20),
@@ -54,8 +63,9 @@ class _TarefaViewState extends State<TarefaView> {
                 color: Color.fromRGBO(67, 54, 51, 1),
               ),
             ),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: dateController,
+              decoration: const InputDecoration(
                 hintText: '29/12/2003',
               ),
             ),
@@ -102,7 +112,7 @@ class _TarefaViewState extends State<TarefaView> {
             ),
             const SizedBox(height: 10),
             TextField(
-              controller: _notaController,
+              controller: descriptionController,
               maxLines: null,
               decoration: const InputDecoration(
                 hintText: 'Escreva alguns detalhes da tarefa aqui...',
@@ -121,9 +131,35 @@ class _TarefaViewState extends State<TarefaView> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                onPressed: () {
-                  // Adicione sua lógica de salvar aqui
-                  Navigator.pop(context); // Volta para a tela anterior após salvar
+                onPressed: () async {
+                  
+                   final response = await taskService.createTask(
+                    titleController.text, dateController.text, dropdownValue, descriptionController.text,
+                   );
+
+                    if ([200,201].contains(response.statusCode) 
+                      && response.body.isNotEmpty) {
+
+                      Fluttertoast.showToast(
+                      msg: "Perfil salvo com sucesso.",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.TOP,
+                      timeInSecForIosWeb: 3,
+                      backgroundColor: Colors.green,
+                      textColor: Colors.white,
+                      fontSize: 16.0);
+                    } else {
+                      Fluttertoast.showToast(
+                      msg: "Houve um erro ao salver o perfil.",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.TOP,
+                      timeInSecForIosWeb: 3,
+                      backgroundColor: Colors.red,
+                      textColor: Colors.white,
+                      fontSize: 16.0);
+                    }
+
+                  Navigator.pop(context);
                 },
                 child: const Text('Salvar'),
               ),
