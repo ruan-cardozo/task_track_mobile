@@ -1,9 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:task_track/src/services/api_service.dart';
-import 'package:task_track/src/models/task.dart';
 import 'package:task_track/src/widget/ButtonGrid/button_grid.dart';
 import 'package:task_track/src/widget/BottomNavigator/bottom_navigation_bar.dart';
+import 'package:task_track/src/widget/RectangleText/rectangle_text.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -15,7 +14,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   int _numberOfTasks = 0;
-  List<Task> _tasks = [];
+  // List<Task> _tasks = [];
   bool _isLoading = true;
 
   @override
@@ -28,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
     try {
       final tasks = await fetchTasksByStatus(status);
       setState(() {
-        _tasks = tasks;
+        // _tasks = tasks;
         _numberOfTasks = tasks.length;
         _isLoading = false;
       });
@@ -99,21 +98,24 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(height: 20),
             const ButtonGrid(),
             const SizedBox(height: 0),
-            _isLoading
-                ? const Center(child: CircularProgressIndicator())
-                : Expanded(
-                    child: ListView.builder(
-                      itemCount: _tasks.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Text(_tasks[index].description),
-                          leading: const Icon(Icons.task),
-                          subtitle: Text(_tasks[index].status),
-                        );
-                      },
-                    ),
-                  ),
+            // _isLoading
+            //     ? const Center(child: CircularProgressIndicator())
+            //     : Expanded(
+            //         child: ListView.builder(
+            //           itemCount: _tasks.length,
+            //           itemBuilder: (context, index) {
+            //             return ListTile(
+            //               title: Text(_tasks[index].description),
+            //               leading: const Icon(Icons.task),
+            //               subtitle: Text(_tasks[index].status),
+            //             );
+            //           },
+            //         ),
+            //       ),
             const SizedBox(height: 0),
+            const Expanded(
+              child: ChecklistArea(),
+            ),
             buildBottomNavigationBar(),
           ],
         ),
