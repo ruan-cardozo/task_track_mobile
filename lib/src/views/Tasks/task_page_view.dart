@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:task_track/src/services/api_service.dart';
+import 'package:task_track/src/config/api_config.dart';
 import 'package:task_track/src/models/task.dart';
+import 'package:task_track/src/services/task_service.dart';
 
 class TasksPage extends StatelessWidget {
-  final String status;
+  final String status;  
+  final TaskService taskService = TaskService(baseUrl: BASE_URL, tasks: []);
 
   TasksPage({required this.status});
 
-  Future<List<Task>> fetchTasksByStatus(String status) async {
-    return await ApiService.fetchTasksByStatus(status);
+  Future<List<Task>> fetchTasksByStatus() async {
+    return taskService.getTasks();
   }
 
   @override
@@ -18,7 +20,7 @@ class TasksPage extends StatelessWidget {
         title: Text('Tarefas - $status'),
       ),
       body: FutureBuilder<List<Task>>(
-        future: fetchTasksByStatus(status),
+        future: fetchTasksByStatus(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());

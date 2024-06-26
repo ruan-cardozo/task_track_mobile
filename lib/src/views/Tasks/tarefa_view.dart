@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:http/http.dart';
+import 'package:intl/intl.dart';
 import 'package:task_track/src/config/api_config.dart';
 import 'package:task_track/src/services/task_service.dart';
-
 
 class TarefaView extends StatefulWidget {
   const TarefaView({super.key});
@@ -17,7 +16,7 @@ class _TarefaViewState extends State<TarefaView> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController dateController = TextEditingController();
-  TaskService taskService = TaskService(baseUrl: BASE_URL);
+  TaskService taskService = TaskService(baseUrl: BASE_URL, tasks: []);
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +115,9 @@ class _TarefaViewState extends State<TarefaView> {
               maxLines: null,
               decoration: const InputDecoration(
                 hintText: 'Escreva alguns detalhes da tarefa aqui...',
-                border: OutlineInputBorder(borderSide: BorderSide(color: Color.fromRGBO(67, 54, 51, 1))),
+                border: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Color.fromRGBO(67, 54, 51, 1))),
               ),
               style: const TextStyle(fontSize: 16),
             ),
@@ -124,42 +125,49 @@ class _TarefaViewState extends State<TarefaView> {
             Center(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(67, 54, 51, 1), // Background color
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  backgroundColor:
+                      const Color.fromRGBO(67, 54, 51, 1), // Background color
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   textStyle: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 onPressed: () async {
-                  
-                   final response = await taskService.createTask(
-                    titleController.text, dateController.text, dropdownValue, descriptionController.text,
-                   );
+                  DateFormat inputFormat = DateFormat('dd/MM/yyyy');
+                  DateTime dateTime = inputFormat.parse(dateController.text);
+                  String dateIsoString = dateTime.toIso8601String();
+                  final response = await taskService.createTask(
+                    titleController.text,
+                    dateIsoString,
+                    dropdownValue,
+                    descriptionController.text,
+                  );
 
-                    if ([200,201].contains(response.statusCode) 
-                      && response.body.isNotEmpty) {
+                  if ([200, 201].contains(response.statusCode) &&
+                      response.body.isNotEmpty) {
+                    Fluttertoast.showToast(
+                        msg: "Tarefa cadastrada com sucesso!",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.TOP,
+                        timeInSecForIosWeb: 3,
+                        backgroundColor: Colors.green,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  } else {
+                    Fluttertoast.showToast(
+                        msg:
+                            "Houve um erro ao cadastrar a tarefa. Erro: ${response.statusCode}",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.TOP,
+                        timeInSecForIosWeb: 3,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  }
 
-                      Fluttertoast.showToast(
-                      msg: "Perfil salvo com sucesso.",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.TOP,
-                      timeInSecForIosWeb: 3,
-                      backgroundColor: Colors.green,
-                      textColor: Colors.white,
-                      fontSize: 16.0);
-                    } else {
-                      Fluttertoast.showToast(
-                      msg: "Houve um erro ao salver o perfil.",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.TOP,
-                      timeInSecForIosWeb: 3,
-                      backgroundColor: Colors.red,
-                      textColor: Colors.white,
-                      fontSize: 16.0);
-                    }
-
-                  Navigator.pop(context);
+                  // Navigator.pop(context);
                 },
                 child: const Text('Salvar'),
               ),
