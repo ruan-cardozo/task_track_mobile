@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_track/src/views/Tasks/tarefa_view.dart';
 import 'package:task_track/src/views/Tasks/task_page_view.dart';
 
 class ButtonGrid extends StatelessWidget {
@@ -14,7 +15,7 @@ class ButtonGrid extends StatelessWidget {
         _buildButton(context, 'Em progresso', Icons.assignment),
         _buildButton(context, 'A fazer', Icons.check_circle_outline),
         _buildButton(context, 'Novas tarefas', Icons.calendar_today),
-        _buildButton(context, 'Concluídas', Icons.done),
+        _buildButton(context, 'Concluído', Icons.done),
       ],
     );
   }
@@ -25,7 +26,9 @@ class ButtonGrid extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => TasksPage(status: status),
+            builder: (context) => status == "Novas tarefas"
+              ? const TarefaView()
+              : TasksPage(status: status),
           ),
         );
       },

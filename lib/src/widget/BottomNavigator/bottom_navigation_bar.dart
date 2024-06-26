@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_track/src/views/Definition/definition_view.dart';
 import 'package:task_track/src/views/Profile/profile_view.dart';
 import 'package:task_track/src/views/Tasks/tarefa_view.dart';
 import 'package:task_track/src/views/Tasks/task_page_view.dart';
@@ -84,7 +85,12 @@ class CustomBottomNavigationBar extends StatelessWidget {
         // ação para o primeiro item
         break;
       case 1:
-        // ação para o segundo item
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => TasksPage(status: 'Em progresso'),
+          ),
+        );
         break;
       case 2:
         Navigator.push(
@@ -93,7 +99,10 @@ class CustomBottomNavigationBar extends StatelessWidget {
         );
         break;
       case 3:
-        // ação para o quarto item
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const MyDefinitionPage()),
+        );
         break;
     }
     onItemTapped(index); // Para manter a funcionalidade de callback original

@@ -38,10 +38,24 @@ class TaskService {
     }
   }
 
-  Future<List<Task>> getTasks() async {
+  Future<List<Task>> getTasks(status) async {
+    var statusToFilter = status;
+
+    switch (status) {
+      case 'A fazer':
+        statusToFilter = 'todo';
+        break;
+      case 'Em progresso':
+        statusToFilter = 'doing';
+        break;
+      case 'Concluído':
+        statusToFilter = 'done';
+        break;
+    }
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('userToken') ?? '';
-    var urlToGet = '$baseUrl/v2/tasks/';
+    var urlToGet = '$baseUrl/v2/tasks/status/$statusToFilter';
 
     try {
       var response = await http.get(
@@ -57,7 +71,7 @@ class TaskService {
         List<Task> tasks =
             tasksJson.map((json) => Task.fromJson(json)).toList();
 
-            print(tasks);
+        print(tasks);
         return tasks;
       } else {
         print('Server error: ${response.body}');

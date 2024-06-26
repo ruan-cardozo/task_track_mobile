@@ -20,7 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    _fetchTasks('A fazer'); // Ajuste o status conforme necessário
+    _fetchTasks('A fazer');
   }
 
   Future<void> _fetchTasks(String status) async {

@@ -9,8 +9,8 @@ class TasksPage extends StatelessWidget {
 
   TasksPage({required this.status});
 
-  Future<List<Task>> fetchTasksByStatus() async {
-    return taskService.getTasks();
+  Future<List<Task>> fetchTasksByStatus(status) async {
+    return taskService.getTasks(status);
   }
 
   @override
@@ -20,7 +20,7 @@ class TasksPage extends StatelessWidget {
         title: Text('Tarefas - $status'),
       ),
       body: FutureBuilder<List<Task>>(
-        future: fetchTasksByStatus(),
+        future: fetchTasksByStatus(status),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -34,7 +34,7 @@ class TasksPage extends StatelessWidget {
               itemCount: tasks.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(tasks[index].description),
+                  title: Text(tasks[index].title),
                   leading: const Icon(Icons.task),
                   subtitle: Text(tasks[index].status),
                 );
