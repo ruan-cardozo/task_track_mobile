@@ -26,7 +26,7 @@ class UserService {
 
   Future<http.Response> login(String email, String password) async {
     var urlToPost = '$baseUrl/v2/login';
-
+    print(urlToPost);
     try {
       var result = await http.post(
         Uri.parse(urlToPost),

@@ -98,21 +98,6 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(height: 20),
             const ButtonGrid(),
             const SizedBox(height: 0),
-            // _isLoading
-            //     ? const Center(child: CircularProgressIndicator())
-            //     : Expanded(
-            //         child: ListView.builder(
-            //           itemCount: _tasks.length,
-            //           itemBuilder: (context, index) {
-            //             return ListTile(
-            //               title: Text(_tasks[index].description),
-            //               leading: const Icon(Icons.task),
-            //               subtitle: Text(_tasks[index].status),
-            //             );
-            //           },
-            //         ),
-            //       ),
-            const SizedBox(height: 0),
             const Expanded(
               child: ChecklistArea(),
             ),

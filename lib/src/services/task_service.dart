@@ -27,10 +27,10 @@ class TaskService {
           'dueDate': date,
           'status': status,
           'description': description,
-          'completed': false
         }),
       );
 
+      print(result.body);
       return result;
     } catch (e) {
       debugPrint('Houve um erro ao criar a tarefa: $e');
@@ -80,6 +80,32 @@ class TaskService {
     } catch (e) {
       print('An error occurred while fetching tasks: $e');
       return [];
+    }
+  }
+
+  Future<http.Response> editTask(
+      String title, String date, String status, String description, int id) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('userToken') ?? '';
+    var urlToPut = '$baseUrl/v2/tasks/$id';
+    try {
+      var result = await http.put(
+        Uri.parse(urlToPut),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+        body: jsonEncode({
+          'title': title,
+          'dueDate': date,
+          'status': status,
+          'description': description,
+        }),
+      );
+      return result;
+    } catch (e) {
+      debugPrint('An error occurred while editing the task: $e');
+      return http.Response('An error occurred: $e', 400);
     }
   }
 }

@@ -7,8 +7,8 @@ class Task {
 
   Task({
     required this.id,
-    required this.description,
     required this.title,
+    required this.description,
     required this.status,
 
     required this.dueDate,

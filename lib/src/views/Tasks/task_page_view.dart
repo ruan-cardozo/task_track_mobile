@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:task_track/src/config/api_config.dart';
 import 'package:task_track/src/models/task.dart';
 import 'package:task_track/src/services/task_service.dart';
+import 'package:task_track/src/views/Tasks/task_view.dart';
 
 class TasksPage extends StatelessWidget {
   final String status;  
@@ -37,6 +38,14 @@ class TasksPage extends StatelessWidget {
                   title: Text(tasks[index].title),
                   leading: const Icon(Icons.task),
                   subtitle: Text(tasks[index].status),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => TaskView(task: tasks[index]),
+                      ),
+                    );
+                  },
                 );
               },
             );
