@@ -34,11 +34,11 @@ class LoginFooter extends StatelessWidget {
                         ),
                       );
                     },                    
-                    child: const Text(
+                    child: Text(
                       'Registrar-se',
                       style: TextStyle(                                             
                         fontSize: 24,
-                        color: Color.fromRGBO(67, 54, 51, 100),
+                        color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
                         decoration: TextDecoration.none,
                       ),
                     ),
@@ -50,13 +50,13 @@ class LoginFooter extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     alignment: Alignment.centerRight,
                     fixedSize: const Size(48, 48),
-                    backgroundColor: const Color.fromRGBO(67, 54, 51, 100),
+                    backgroundColor: Colors.black,
                     shape: const CircleBorder(),
                   ),
                   child: const Icon(
                     size: 16,
                     Icons.arrow_forward,
-                    color: Color.fromRGBO(222, 203, 183, 100),
+                    color: Colors.white,
                   ),
                 ),
               ],

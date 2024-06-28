@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class RegistrationHeader extends StatelessWidget {
   const RegistrationHeader({super.key});
@@ -10,7 +10,7 @@ class RegistrationHeader extends StatelessWidget {
       child: SingleChildScrollView(
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
-          child: const Stack(
+          child: Stack(
             children: <Widget>[
               Positioned(
                 top: 164,
@@ -19,7 +19,7 @@ class RegistrationHeader extends StatelessWidget {
                   'Registre-se',
                   style: TextStyle(
                     fontSize: 36,
-                    color: Color.fromRGBO(67, 54, 51, 100),
+                    color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
                     decoration: TextDecoration.none,
                   ),
                 ),

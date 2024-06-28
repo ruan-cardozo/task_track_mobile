@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:task_track/src/config/api_config.dart';
@@ -24,8 +25,10 @@ class _TaskViewState extends State<TaskView> {
   void initState() {
     super.initState();
     titleController = TextEditingController(text: widget.task.title);
-    dateController = TextEditingController(text: DateFormat('dd/MM/yyyy').format(widget.task.dueDate.toUtc()));
-    descriptionController = TextEditingController(text: widget.task.description);
+    dateController = TextEditingController(
+        text: DateFormat('dd/MM/yyyy').format(widget.task.dueDate.toUtc()));
+    descriptionController =
+        TextEditingController(text: widget.task.description);
   }
 
   @override
@@ -40,8 +43,12 @@ class _TaskViewState extends State<TaskView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Visualizando tarefa'),
-        backgroundColor: const Color.fromRGBO(67, 54, 51, 1),
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Text(
+          'Visualizando tarefa',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.black,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -50,19 +57,23 @@ class _TaskViewState extends State<TaskView> {
           children: [
             Text(
               widget.task.title,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(67, 54, 51, 1),
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
+            Text(
               'Título:',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(67, 54, 51, 1),
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
             TextField(
@@ -72,12 +83,14 @@ class _TaskViewState extends State<TaskView> {
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
+            Text(
               'Data:',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(67, 54, 51, 1),
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
             TextField(
@@ -87,12 +100,14 @@ class _TaskViewState extends State<TaskView> {
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
+            Text(
               'Status:',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(67, 54, 51, 1),
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
             DropdownButton<String>(
@@ -100,10 +115,13 @@ class _TaskViewState extends State<TaskView> {
               icon: const Icon(Icons.expand_more),
               iconSize: 24,
               elevation: 16,
-              style: const TextStyle(color: Color.fromRGBO(67, 54, 51, 1)),
+              style: TextStyle(
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black),
               underline: Container(
                 height: 2,
-                color: const Color.fromRGBO(67, 54, 51, 1),
+                color: Colors.black,
               ),
               onChanged: (String? newValue) {
                 setState(() {
@@ -119,12 +137,12 @@ class _TaskViewState extends State<TaskView> {
               }).toList(),
             ),
             const SizedBox(height: 20),
-            const Text(
+            Text(
               'Nota:',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(67, 54, 51, 1),
+                color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
               ),
             ),
             const SizedBox(height: 10),
@@ -134,7 +152,7 @@ class _TaskViewState extends State<TaskView> {
               decoration: const InputDecoration(
                 hintText: 'Escreva alguns detalhes da tarefa aqui...',
                 border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color.fromRGBO(67, 54, 51, 1))),
+                    borderSide: BorderSide(color: Colors.black)),
               ),
               style: const TextStyle(fontSize: 16),
             ),
@@ -142,8 +160,9 @@ class _TaskViewState extends State<TaskView> {
             Center(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(67, 54, 51, 1),
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  backgroundColor: Colors.black,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   textStyle: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -161,7 +180,8 @@ class _TaskViewState extends State<TaskView> {
                     widget.task.id,
                   );
 
-                  if ([200, 201].contains(response.statusCode) && response.body.isNotEmpty) {
+                  if ([200, 201].contains(response.statusCode) &&
+                      response.body.isNotEmpty) {
                     Fluttertoast.showToast(
                         msg: "Tarefa editada com sucesso!",
                         toastLength: Toast.LENGTH_SHORT,
@@ -172,7 +192,8 @@ class _TaskViewState extends State<TaskView> {
                         fontSize: 16.0);
                   } else {
                     Fluttertoast.showToast(
-                        msg: "Houve um erro ao editar a tarefa. Erro: ${response.statusCode}",
+                        msg:
+                            "Houve um erro ao editar a tarefa. Erro: ${response.statusCode}",
                         toastLength: Toast.LENGTH_SHORT,
                         gravity: ToastGravity.TOP,
                         timeInSecForIosWeb: 3,
@@ -181,7 +202,10 @@ class _TaskViewState extends State<TaskView> {
                         fontSize: 16.0);
                   }
                 },
-                child: const Text('Salvar'),
+                child: const Text(
+                  'Salvar',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
           ],

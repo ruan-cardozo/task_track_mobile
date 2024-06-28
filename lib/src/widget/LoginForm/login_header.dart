@@ -9,7 +9,7 @@ class LoginHeader extends StatelessWidget {
       flex: 2,
       child: Container(
         width: MediaQuery.of(context).size.width,
-        child: const Stack(
+        child: Stack(
           children: <Widget>[
             Positioned.fill(
               child: Center(
@@ -17,7 +17,7 @@ class LoginHeader extends StatelessWidget {
                   'Seja bem-vindo',
                   style: TextStyle(
                     fontSize: 36,
-                    color: Color.fromRGBO(67, 54, 51, 100),
+                    color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
                     decoration: TextDecoration.none,
                   ),
                 ),

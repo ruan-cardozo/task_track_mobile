@@ -70,7 +70,7 @@ class RegistrationForm extends StatelessWidget {
               onPressed: () => _registerUser(context),
               style: ElevatedButton.styleFrom(
                 alignment: Alignment.centerRight,
-                backgroundColor: const Color.fromRGBO(67, 54, 51, 100),
+                backgroundColor: Colors.black,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -79,7 +79,7 @@ class RegistrationForm extends StatelessWidget {
                 'Registrar',
                 style: TextStyle(
                   fontSize: 18,
-                  color: Color.fromRGBO(222, 203, 183, 100),
+                  color: Colors.white,
                 ),
               ),
             ),

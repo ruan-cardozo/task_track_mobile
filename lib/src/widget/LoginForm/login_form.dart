@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class LoginForm extends StatelessWidget {
   final TextEditingController emailController;
   final TextEditingController passwordController;
-  final VoidCallback loginUser; // Passar função loginUser como parâmetro
+  final VoidCallback loginUser;
 
   const LoginForm({
     Key? key,
@@ -22,34 +22,34 @@ class LoginForm extends StatelessWidget {
           children: <Widget>[
             TextField(
               controller: emailController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Email',
                 prefixIcon: Icon(
                   Icons.email,
-                  color: Color.fromRGBO(67, 54, 51, 100),
+                  color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
                 ),
               ),
             ),
             const SizedBox(height: 16),
             TextField(
               controller: passwordController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Senha',
                 prefixIcon: Icon(
                   Icons.lock,
-                  color: Color.fromRGBO(67, 54, 51, 100),
+                  color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
                 ),
               ),
               obscureText: true,
             ),
             const SizedBox(height: 16),
-            const Align(
+            Align(
               alignment: Alignment.centerRight,
               child: Text(
                 'Esqueceu a senha?',
                 style: TextStyle(
                   fontSize: 12,
-                  color: Color.fromRGBO(67, 54, 51, 100),
+                  color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
                   decoration: TextDecoration.none,
                 ),
               ),
@@ -59,7 +59,7 @@ class LoginForm extends StatelessWidget {
               onPressed: loginUser, // Use a função loginUser passada como parâmetro
               style: ElevatedButton.styleFrom(
                 alignment: Alignment.centerRight,
-                backgroundColor: const Color.fromRGBO(67, 54, 51, 100),
+                backgroundColor: Colors.black,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -68,7 +68,7 @@ class LoginForm extends StatelessWidget {
                 'Login',
                 style: TextStyle(
                   fontSize: 18,
-                  color: Color.fromRGBO(222, 203, 183, 100),
+                  color: Colors.white,
                 ),
               ),
             ),

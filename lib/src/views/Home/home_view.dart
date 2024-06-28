@@ -50,9 +50,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Row(
-          children: [            
-            Image.asset(              
-              'lib/assets/images/perfil.png', scale: 4.5, alignment: Alignment.centerRight,
+          children: [   
+            const CircleAvatar(
+              radius: 25,
+              backgroundImage: AssetImage('lib/assets/images/dog_image.jpg'),
             ),
             const SizedBox(width: 20),
             Column(

@@ -22,29 +22,37 @@ class _TarefaViewState extends State<TarefaView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Nova tarefa'),
-        backgroundColor: const Color.fromRGBO(67, 54, 51, 1),
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Text(
+          'Nova tarefa',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.black,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'Nova tarefa',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(67, 54, 51, 1),
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
+            Text(
               'Título:',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(67, 54, 51, 1),
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
             TextField(
@@ -54,12 +62,14 @@ class _TarefaViewState extends State<TarefaView> {
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
+            Text(
               'Data:',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(67, 54, 51, 1),
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
             TextField(
@@ -69,12 +79,14 @@ class _TarefaViewState extends State<TarefaView> {
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
+            Text(
               'Status:',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(67, 54, 51, 1),
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
             DropdownButton<String>(
@@ -82,10 +94,13 @@ class _TarefaViewState extends State<TarefaView> {
               icon: const Icon(Icons.expand_more),
               iconSize: 24,
               elevation: 16,
-              style: const TextStyle(color: Color.fromRGBO(67, 54, 51, 1)),
+              style: TextStyle(
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black),
               underline: Container(
                 height: 2,
-                color: const Color.fromRGBO(67, 54, 51, 1),
+                color: Colors.black,
               ),
               onChanged: (String? newValue) {
                 setState(() {
@@ -101,12 +116,12 @@ class _TarefaViewState extends State<TarefaView> {
               }).toList(),
             ),
             const SizedBox(height: 20),
-            const Text(
+            Text(
               'Nota:',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(67, 54, 51, 1),
+                color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
               ),
             ),
             const SizedBox(height: 10),
@@ -116,8 +131,7 @@ class _TarefaViewState extends State<TarefaView> {
               decoration: const InputDecoration(
                 hintText: 'Escreva alguns detalhes da tarefa aqui...',
                 border: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromRGBO(67, 54, 51, 1))),
+                    borderSide: BorderSide(color: Colors.black)),
               ),
               style: const TextStyle(fontSize: 16),
             ),
@@ -125,8 +139,7 @@ class _TarefaViewState extends State<TarefaView> {
             Center(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      const Color.fromRGBO(67, 54, 51, 1), // Background color
+                  backgroundColor: Colors.black, // Background color
                   padding:
                       const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   textStyle: const TextStyle(
@@ -169,40 +182,15 @@ class _TarefaViewState extends State<TarefaView> {
 
                   // Navigator.pop(context);
                 },
-                child: const Text('Salvar'),
+                child: const Text(
+                  'Salvar',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Iniciar',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.assignment),
-            label: 'Atividade',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Perfil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Definições',
-          ),
-        ],
-        selectedItemColor: const Color.fromRGBO(67, 54, 51, 1),
-        unselectedItemColor: Colors.grey,
-      ),
     );
   }
-}
-
-void main() {
-  runApp(const MaterialApp(
-    home: TarefaView(),
-  ));
 }

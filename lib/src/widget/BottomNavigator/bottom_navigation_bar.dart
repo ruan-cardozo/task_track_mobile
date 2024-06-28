@@ -28,8 +28,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
             type: BottomNavigationBarType.fixed,
             items: _navBarItems,
             currentIndex: selectedIndex,
-            selectedItemColor: const Color.fromRGBO(67, 54, 51, 100),
-            unselectedItemColor: const Color.fromRGBO(143, 143, 143, 100),
+            selectedItemColor: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
+            unselectedItemColor: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
             onTap: (index) {
               _onItemTapped(context, index);
             },
@@ -47,7 +47,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.zero,
-                backgroundColor: const Color.fromRGBO(67, 54, 51, 100),
+                backgroundColor: Colors.black,
                 fixedSize: const Size(60, 60),
                 shape: const CircleBorder(),
               ),
@@ -68,7 +68,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                   child: Icon(
                     Icons.add,
                     size: 46,
-                    color: Color.fromRGBO(222, 203, 183, 100),
+                    color: Colors.white,
                   ),
                 ),
               ),

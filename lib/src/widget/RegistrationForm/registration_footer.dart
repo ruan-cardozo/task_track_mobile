@@ -36,11 +36,11 @@ class RegistrationFooter extends StatelessWidget {
                           ),
                         );
                       },
-                      child: const Text(
+                      child: Text(
                         'Login',
                         style: TextStyle(
                           fontSize: 24,
-                          color: Color.fromRGBO(67, 54, 51, 100),
+                          color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
                           decoration: TextDecoration.none,
                         ),
                       ),
@@ -51,7 +51,7 @@ class RegistrationFooter extends StatelessWidget {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(48, 48),
-                      backgroundColor: const Color.fromRGBO(67, 54, 51, 100),
+                      backgroundColor: Colors.black,
                       shape: const CircleBorder(),
                     ),
                     child: InkWell(
@@ -59,7 +59,7 @@ class RegistrationFooter extends StatelessWidget {
                       child: const Icon(
                         size: 16,
                         Icons.arrow_forward,
-                        color: Color.fromRGBO(222, 203, 183, 100),
+                        color: Colors.white,
                       ),
                     ),
                   ),
