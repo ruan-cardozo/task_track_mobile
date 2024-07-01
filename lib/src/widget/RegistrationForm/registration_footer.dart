@@ -36,30 +36,30 @@ class RegistrationFooter extends StatelessWidget {
                           ),
                         );
                       },
-                      child: const Text(
+                      child: Text(
                         'Login',
                         style: TextStyle(
-                          fontSize: 32,
-                          color: Color.fromRGBO(67, 54, 51, 100),
+                          fontSize: 24,
+                          color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
                           decoration: TextDecoration.none,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 190),
+                  const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(68, 68),
-                      backgroundColor: const Color.fromRGBO(67, 54, 51, 100),
+                      fixedSize: const Size(48, 48),
+                      backgroundColor: Colors.black,
                       shape: const CircleBorder(),
                     ),
                     child: InkWell(
                       onTap: () => registerUser(),
                       child: const Icon(
-                        size: 24,
+                        size: 16,
                         Icons.arrow_forward,
-                        color: Color.fromRGBO(222, 203, 183, 100),
+                        color: Colors.white,
                       ),
                     ),
                   ),

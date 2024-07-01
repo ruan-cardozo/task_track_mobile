@@ -24,15 +24,15 @@ class CustomTextField extends StatelessWidget {
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         hintText: hintText,
-        hintStyle: const TextStyle(color: Color.fromRGBO(222, 203, 183, 100)),
+        hintStyle: const TextStyle(color: Colors.white),
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Color.fromRGBO(211, 210, 210, 100)),
         ),
         focusedBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: Color.fromRGBO(67, 54, 51, 100)),
+          borderSide: BorderSide(color: Colors.black),
         ),
         labelText: labelText,
-        labelStyle: const TextStyle(color: Color.fromRGBO(222, 203, 183, 100)),
+        labelStyle: const TextStyle(color: Colors.white),
       ),
     );
   }

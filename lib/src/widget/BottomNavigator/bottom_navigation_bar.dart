@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:task_track/src/views/Definition/definition_view.dart';
 import 'package:task_track/src/views/Profile/profile_view.dart';
+import 'package:task_track/src/views/Tasks/tarefa_view.dart';
+import 'package:task_track/src/views/Tasks/task_page_view.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   final int selectedIndex;
@@ -14,8 +17,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      alignment: Alignment
-          .bottomCenter, 
+      alignment: Alignment.bottomCenter,
       children: [
         Positioned(
           height: 94,
@@ -26,8 +28,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
             type: BottomNavigationBarType.fixed,
             items: _navBarItems,
             currentIndex: selectedIndex,
-            selectedItemColor: const Color.fromRGBO(67, 54, 51, 100),
-            unselectedItemColor: const Color.fromRGBO(143, 143, 143, 100),
+            selectedItemColor: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
+            unselectedItemColor: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
             onTap: (index) {
               _onItemTapped(context, index);
             },
@@ -45,18 +47,29 @@ class CustomBottomNavigationBar extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.zero,
-                backgroundColor: const Color.fromRGBO(67, 54, 51, 100),
+                backgroundColor: Colors.black,
                 fixedSize: const Size(60, 60),
                 shape: const CircleBorder(),
               ),
               onPressed: () {
-                // ação do botão para abrir a tela de tarefas
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => TasksPage(status: 'task_page_view')));
+                  },
+                ); // ação do botão para abrir a tela de tarefas
               },
-              child: const Center(
-                child: Icon(
-                  Icons.add,
-                  size: 46,
-                  color: Color.fromRGBO(222, 203, 183, 100),
+              child: GestureDetector(
+                onTap: () {
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const TarefaView()));
+                  },
+                child: const Center(
+                  child: Icon(
+                    Icons.add,
+                    size: 46,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
@@ -72,7 +85,12 @@ class CustomBottomNavigationBar extends StatelessWidget {
         // ação para o primeiro item
         break;
       case 1:
-        // ação para o segundo item
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => TasksPage(status: 'Em progresso'),
+          ),
+        );
         break;
       case 2:
         Navigator.push(
@@ -81,7 +99,10 @@ class CustomBottomNavigationBar extends StatelessWidget {
         );
         break;
       case 3:
-        // ação para o quarto item
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const MyDefinitionPage()),
+        );
         break;
     }
     onItemTapped(index); // Para manter a funcionalidade de callback original

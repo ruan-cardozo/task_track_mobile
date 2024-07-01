@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:task_track/src/config/api_config.dart';
-import 'package:task_track/src/widget/BottomNavigator/bottom_navigation_bar.dart';
+import 'package:task_track/src/services/api_service.dart';
 import 'package:task_track/src/widget/ButtonGrid/button_grid.dart';
+import 'package:task_track/src/widget/BottomNavigator/bottom_navigation_bar.dart';
 import 'package:task_track/src/widget/RectangleText/rectangle_text.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -14,12 +14,29 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   int _numberOfTasks = 0;
+  // List<Task> _tasks = [];
+  bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
+    _fetchTasks('A fazer');
+  }
 
-    _numberOfTasks = 10;
+  Future<void> _fetchTasks(String status) async {
+    try {
+      final tasks = await fetchTasksByStatus(status);
+      setState(() {
+        // _tasks = tasks;
+        _numberOfTasks = tasks.length;
+        _isLoading = false;
+      });
+    } catch (e) {
+      print(e);
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   void _onItemTapped(int index) {
@@ -33,12 +50,12 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Row(
-          children: [
+          children: [   
             const CircleAvatar(
-              radius: 20,
-              backgroundImage: NetworkImage(AVATAR_IMAGE),
+              radius: 25,
+              backgroundImage: AssetImage('lib/assets/images/dog_image.jpg'),
             ),
-            const SizedBox(width: 10),
+            const SizedBox(width: 20),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -85,7 +102,6 @@ class _MyHomePageState extends State<MyHomePage> {
             const Expanded(
               child: ChecklistArea(),
             ),
-            const SizedBox(height: 0),
             buildBottomNavigationBar(),
           ],
         ),

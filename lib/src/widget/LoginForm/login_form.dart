@@ -1,13 +1,16 @@
+
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatelessWidget {
   final TextEditingController emailController;
   final TextEditingController passwordController;
+  final VoidCallback loginUser;
 
   const LoginForm({
     Key? key,
     required this.emailController,
     required this.passwordController,
+    required this.loginUser,
   }) : super(key: key);
 
   @override
@@ -17,52 +20,55 @@ class LoginForm extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            // Campo de Email com ícone
             TextField(
               controller: emailController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Email',
-                prefixIcon: Icon(Icons.email, color: Color.fromRGBO(67, 54, 51, 100),),
+                prefixIcon: Icon(
+                  Icons.email,
+                  color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
+                ),
               ),
             ),
-            const SizedBox(height: 16), // Espaço vertical
-            // Campo de Senha com ícone
+            const SizedBox(height: 16),
             TextField(
               controller: passwordController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Senha',
-                prefixIcon: Icon(Icons.lock, color: Color.fromRGBO(67, 54, 51, 100),),
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
+                ),
               ),
               obscureText: true,
             ),
-            const SizedBox(height: 16), // Espaço vertical
-            const Align(
+            const SizedBox(height: 16),
+            Align(
               alignment: Alignment.centerRight,
               child: Text(
                 'Esqueceu a senha?',
                 style: TextStyle(
                   fontSize: 12,
-                  color: Color.fromRGBO(67, 54, 51, 100),
+                  color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
                   decoration: TextDecoration.none,
                 ),
               ),
             ),
-            const SizedBox(height: 16), // Espaço vertical
+            const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: loginUser, // Defina a função para o botão de login
+              onPressed: loginUser, // Use a função loginUser passada como parâmetro
               style: ElevatedButton.styleFrom(
                 alignment: Alignment.centerRight,
-                //minimumSize: const Size(68, 68),
-                backgroundColor: const Color.fromRGBO(67, 54, 51, 100),
+                backgroundColor: Colors.black,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20), // Bordas arredondadas
+                  borderRadius: BorderRadius.circular(20),
                 ),
               ),
               child: const Text(
-                'Login', // Troque o ícone pelo texto "Login"
+                'Login',
                 style: TextStyle(
                   fontSize: 18,
-                  color: Color.fromRGBO(222, 203, 183, 100),
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -71,10 +77,4 @@ class LoginForm extends StatelessWidget {
       ),
     );
   }
-}
-
-
-void loginUser() {
-  // Lógica para fazer o login
-  // ...
 }

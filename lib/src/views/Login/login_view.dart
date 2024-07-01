@@ -70,11 +70,14 @@ class _MyLoginPageState extends State<MyLoginPage> {
           children: <Widget>[
             const LoginHeader(),
             LoginForm(
-                emailController: emailController,
-                passwordController: passwordController,
-                ),
+              emailController: emailController,
+              passwordController: passwordController,
+              loginUser: loginUser, // Passe a função loginUser corretamente
+            ),
             LoginFooter(
-                isKeyboardVisible: isKeyboardVisible, loginUser: loginUser)
+              isKeyboardVisible: isKeyboardVisible,
+              loginUser: loginUser,
+            ),
           ],
         ),
       ),

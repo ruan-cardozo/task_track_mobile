@@ -1,90 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:task_track/src/widget/SquareButton/square_button.dart';
+import 'package:task_track/src/views/Tasks/tarefa_view.dart';
+import 'package:task_track/src/views/Tasks/task_page_view.dart';
 
 class ButtonGrid extends StatelessWidget {
-  const ButtonGrid({super.key});
+  const ButtonGrid({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      flex: 1,
-      child: Column(
-        children: <Widget>[
-          Expanded(
-            flex: 2,
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: SquareButton(
-                    color: Colors.white,
-                    title: 'Em progresso',
-                    width: 186,
-                    height: 169,
-                    titleStyle:
-                        const TextStyle(color: Colors.black, fontSize: 14),
-                    titleColor: Colors.black,
-                    icon: Icons.list_alt,
-                    onPressed: () {
-                      debugPrint('Button 1 pressed');
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: SquareButton(
-                    color: Colors.white,
-                    title: 'A fazer',
-                    titleStyle:
-                        const TextStyle(color: Colors.black, fontSize: 14),
-                    width: 186,
-                    height: 169,
-                    titleColor: Colors.black,
-                    icon: Icons.poll,
-                    onPressed: () {
-                      debugPrint('Button 2 pressed');
-                    },
-                  ),
-                ),
-              ],
-            ),
+    return GridView.count(
+      crossAxisCount: 2,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      children: <Widget>[
+        _buildButton(context, 'Em progresso', Icons.assignment),
+        _buildButton(context, 'A fazer', Icons.check_circle_outline),
+        _buildButton(context, 'Novas tarefas', Icons.calendar_today),
+        _buildButton(context, 'Concluído', Icons.done),
+      ],
+    );
+  }
+
+  Widget _buildButton(BuildContext context, String status, IconData icon) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => status == "Novas tarefas"
+              ? const TarefaView()
+              : TasksPage(status: status),
           ),
-          Expanded(
-            flex: 2,
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: SquareButton(
-                    width: 186,
-                    height: 169,
-                    icon: Icons.calendar_month,
-                    color: Colors.white,
-                    titleColor: Colors.black,
-                    title: 'Novas tarefas',
-                    titleStyle:
-                        const TextStyle(color: Colors.black, fontSize: 14),
-                    onPressed: () {
-                      debugPrint('Button 3 pressed');
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: SquareButton(
-                    icon: Icons.checklist,
-                    width: 186,
-                    height: 169,
-                    titleColor: Colors.black,
-                    color: Colors.white,
-                    title: 'Concluídas',
-                    titleStyle:
-                        const TextStyle(color: Colors.black, fontSize: 14),
-                    onPressed: () {
-                      debugPrint('Button 4 pressed');
-                    },
-                  ),
-                )
-              ],
-            ),
+        );
+      },
+      child: Card(
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Icon(icon, size: 40),
+              Text(status),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

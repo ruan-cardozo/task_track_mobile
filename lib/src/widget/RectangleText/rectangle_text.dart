@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Task {
+class TaskList {
   bool isChecked;
   String title;
 
-  Task({required this.title, this.isChecked = false});
+  TaskList({required this.title, this.isChecked = false});
 }
 
 class TaskWidget extends StatelessWidget {
-  final Task task;
+  final TaskList task;
   final ValueChanged<bool?>? onChanged;
 
   const TaskWidget({
@@ -40,10 +40,10 @@ class ChecklistArea extends StatefulWidget {
 }
 
 class _ChecklistAreaState extends State<ChecklistArea> {
-  List<Task> tasks = [
-    Task(title: 'Tarefa 1'),
-    Task(title: 'Tarefa 2'),
-    Task(title: 'Tarefa 3'),
+  List<TaskList> taskLists = [
+    TaskList(title: 'Tarefa 1'),
+    TaskList(title: 'Tarefa 2'),
+    TaskList(title: 'Tarefa 3'),
   ];
 
   @override
@@ -70,13 +70,13 @@ class _ChecklistAreaState extends State<ChecklistArea> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: tasks.length,
+              itemCount: taskLists.length,
               itemBuilder: (context, index) {
                 return TaskWidget(
-                  task: tasks[index],
+                  task: taskLists[index],
                   onChanged: (bool? value) {
                     setState(() {
-                      tasks[index].isChecked = value!;
+                      taskLists[index].isChecked = value!;
                     });
                   },
                 );

@@ -62,8 +62,12 @@ class _MyProfileViewState extends State<MyProfileView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Meu Perfil'),
-        backgroundColor: const Color.fromRGBO(67, 54, 51, 1),
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Text(
+          'Meu Perfil',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.black,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -73,7 +77,7 @@ class _MyProfileViewState extends State<MyProfileView> {
             const SizedBox(height: 15),
             const CircleAvatar(
               radius: 100,
-              backgroundImage: NetworkImage(AVATAR_IMAGE),
+              backgroundImage: AssetImage('lib/assets/images/dog_image.jpg'),
             ),
             const SizedBox(height: 15),
             Text(
@@ -93,13 +97,6 @@ class _MyProfileViewState extends State<MyProfileView> {
             ),
             Expanded(
               child: _buildProfileForm(),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: CustomBottomNavigationBar(
-                selectedIndex: _selectedIndex,
-                onItemTapped: _onItemTapped,
-              ),
             ),
           ],
         ),
@@ -131,9 +128,9 @@ class _MyProfileViewState extends State<MyProfileView> {
         const SizedBox(height: 50),
         CustomButton(
           text: 'Editar',
-          textStyle: TextStyle(
+          textStyle: const TextStyle(
             fontSize: 30,
-            color: Colors.brown[200],
+            color: Colors.white,
           ),
           onPressed: () {
             setState(() {
@@ -143,9 +140,9 @@ class _MyProfileViewState extends State<MyProfileView> {
         ),
         CustomButton(
           text: 'Salvar',
-          textStyle: TextStyle(
+          textStyle: const TextStyle(
             fontSize: 30,
-            color: Colors.brown[200],
+            color: Colors.white,
           ),
           onPressed: () async {
             if (isEditing) {

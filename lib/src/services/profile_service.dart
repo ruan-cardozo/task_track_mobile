@@ -1,37 +1,12 @@
-
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileService {
   final String baseUrl;
-
+  
   ProfileService({required this.baseUrl});
-
-  Future<http.Response> updateProfile(
-      String name, String email, String password) async {
-    var urlToPost = '$baseUrl/v2/users';
-
-    try {
-      var result = await http.put(
-        Uri.parse(urlToPost),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
-          'name': name,
-          'email': email,
-          'password': password,
-        }),
-      );
-
-      return result;
-    } catch (e) {
-      debugPrint('An error occurred: $e');
-
-      return http.Response('An error occurred: $e', 500);
-    } 
-  }
 
   Future<http.Response> getUserProfile() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -45,13 +20,11 @@ class ProfileService {
         headers: {
           'Content-Type': 'application/json', 
           'Authorization': 'Bearer $token'
-          },
+        },
       );
-
       return result;
     } catch (e) {
-      debugPrint('An error occurred: $e');
-
+      debugPrint('An error occurred while fetching user profile: $e');
       return http.Response('An error occurred: $e', 500);
     }
   }
@@ -68,17 +41,12 @@ class ProfileService {
         headers: {
           'Content-Type': 'application/json', 
           'Authorization': 'Bearer $token'
-          },
-        body: jsonEncode({
-          'name': name,
-          'email': email,
-        }),
+        },
+        body: jsonEncode({'name': name, 'email': email}),
       );
-      
       return result;
     } catch (e) {
-      debugPrint('An error occurred: $e');
-
+      debugPrint('An error occurred while editing user profile: $e');
       return http.Response('An error occurred: $e', 500);
     }
   }
